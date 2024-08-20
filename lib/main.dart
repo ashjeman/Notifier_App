@@ -3,6 +3,7 @@ import 'package:notifier_app/pages/alarm_list_page.dart';
 import 'package:notifier_app/pages/home_page.dart';
 import 'package:notifier_app/pages/login_page.dart';
 import 'package:notifier_app/pages/alarm_page.dart';
+import 'package:notifier_app/pages/progress_checklist_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Notifier App',
-      home: AlarmListPage()
+      home: ProgressChecklistPage()
     );
   }
 }
