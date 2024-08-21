@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../components/asset_locations_component.dart';
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
 import '../components/header.dart';
@@ -23,7 +24,7 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
             child: CustomAppBar(
-                appBarTitle: 'Task Check List'
+                appBarTitle: 'Asset Location'
             )
         ),
         bottomNavigationBar: NavBar(currentPageIndex: 0),
@@ -42,9 +43,9 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ContainerHeader(headerTitle: 'Tasks'),
+                      ContainerHeader(headerTitle: 'Location List'),
                       Icon(
-                        Icons.tune,
+                        Icons.add,
                         size: 28,
                       ),
                     ],
@@ -68,12 +69,11 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                     thumbColor: const Color(0xFFADA1F8),
                   ),
                   const SizedBox(height: 10),
-                  const Column(
+                  Column(
                     children: [
-                      TaskCheckComponent(
-                        taskTitle: 'Meet with client',
-                        taskCategory: 'CCTV',
-                        taskDate: '30/4/2024',
+                      AssetLocationsComponent(
+                          locationName: 'Lobby',
+                          noOfAssets: '3 Assets'
                       )
                     ],
                   )
