@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/main.dart';
 
 class NavBar extends StatefulWidget {
-  final int currentPageIndex;
+  int currentPageIndex;
 
-  const NavBar({
+  NavBar({
     super.key,
     required this.currentPageIndex
   });
@@ -14,6 +14,7 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+
   @override
   Widget build(BuildContext context) {
     return NavigationBarTheme(
@@ -24,6 +25,18 @@ class _NavBarState extends State<NavBar> {
         ),
         child: NavigationBar(
           selectedIndex: widget.currentPageIndex,
+          onDestinationSelected: (int index) {
+            setState(() {
+              widget.currentPageIndex = index;
+              switch(widget.currentPageIndex){
+                case 0: Navigator.pushNamed(context, '/homepage'); break;
+                case 1: Navigator.pushNamed(context, '/dashboardpage'); break;
+                case 2: Navigator.pushNamed(context, '/alarmlistpage'); break;
+                case 3: //Navigator.pushNamed(context, '/alarmpage'); break;
+              }
+
+            });
+          },
           destinations: const [
             NavigationDestination(
               selectedIcon: Icon(
@@ -36,7 +49,6 @@ class _NavBarState extends State<NavBar> {
                 color: Colors.white,
               ),
               label: 'Home Page',
-
             ),
             NavigationDestination(
                 selectedIcon: Icon(

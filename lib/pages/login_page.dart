@@ -76,7 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 20),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        Navigator.pushNamed(context, '/homepage');
+                      },
                       child: Container(
                         padding: const EdgeInsets.only(left: 15, right: 15),
                         height: 33,

@@ -1,22 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/task_check_component.dart';
+
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
 import '../components/header.dart';
 import '../components/nav_bar.dart';
 import '../components/search_field.dart';
+import '../components/task_check_component.dart';
 
-class TaskCheckListPage extends StatefulWidget {
-  const TaskCheckListPage({super.key});
+class AssetLocationsPage extends StatefulWidget {
+  const AssetLocationsPage({super.key});
 
   @override
-  State<TaskCheckListPage> createState() => _TaskCheckListPageState();
+  State<AssetLocationsPage> createState() => _AssetLocationsPageState();
 }
 
-class _TaskCheckListPageState extends State<TaskCheckListPage> {
-  int? _sliding = 0;
-
+class _AssetLocationsPageState extends State<AssetLocationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,9 +71,9 @@ class _TaskCheckListPageState extends State<TaskCheckListPage> {
                   const Column(
                     children: [
                       TaskCheckComponent(
-                          taskTitle: 'Meet with client',
-                          taskCategory: 'CCTV',
-                          taskDate: '30/4/2024',
+                        taskTitle: 'Meet with client',
+                        taskCategory: 'CCTV',
+                        taskDate: '30/4/2024',
                       )
                     ],
                   )
@@ -84,4 +83,6 @@ class _TaskCheckListPageState extends State<TaskCheckListPage> {
         )
     );
   }
+
+  int? _sliding = 0;
 }

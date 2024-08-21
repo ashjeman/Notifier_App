@@ -30,7 +30,7 @@ class _AlarmListPageState extends State<AlarmListPage> {
               appBarTitle: 'Alarm'
           )
       ),
-      bottomNavigationBar: const  NavBar(currentPageIndex: 2),
+      bottomNavigationBar: NavBar(currentPageIndex: 2),
       body: Container(
         padding: const EdgeInsets.only(top: 70),
         decoration: const BoxDecoration(

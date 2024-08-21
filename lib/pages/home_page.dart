@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/categories.dart';
@@ -20,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
-      bottomNavigationBar: const NavBar(currentPageIndex: 0),
+      bottomNavigationBar: NavBar(currentPageIndex: 0),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -61,12 +63,15 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TopRightButton(
-                          icon: const Icon(
-                            Icons.notifications,
-                            color: Color(0xFF070458),
-                          ),
-                          callback: (){}
+                      GestureDetector(
+                        onTap: (){},
+                        child: TopRightButton(
+                            icon: const Icon(
+                              Icons.notifications,
+                              color: Color(0xFF070458),
+                            ),
+                            callback: (){}
+                        ),
                       ),
                       const SizedBox(
                         width: 10,
@@ -76,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                             Icons.logout,
                             color: Color(0xFF070458),
                           ),
-                          callback: (){}
+                          callback: () => Navigator.pushNamed(context, '/loginpage')
                       ),
                       const SizedBox(width: 15,)
                     ],
@@ -99,64 +104,71 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const BackgroundContainer(
+            BackgroundContainer(
               boxHeight: 200,
               bgChild: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ContainerHeader(headerTitle: 'Categories'),
+                  const ContainerHeader(headerTitle: 'Categories'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Categories(
-                          categoryIcon: 'assets/icons/manual-alarm-icon.png',
-                          categoryName: 'Manual Alarm'
+                        categoryIcon: 'assets/icons/manual-alarm-icon.png',
+                        categoryName: 'Manual Alarm',
+                        toPage: '',
+
                       ),
                       Categories(
-                          categoryIcon: 'assets/icons/trending-icon.png',
-                          categoryName: 'Trending'
+                        categoryIcon: 'assets/icons/trending-icon.png',
+                        categoryName: 'Trending',
+                        toPage: '',
                       ),
                       Categories(
-                          categoryIcon: 'assets/icons/asset-icon.png',
-                          categoryName: 'Asset'
+                        categoryIcon: 'assets/icons/asset-icon.png',
+                        categoryName: 'Asset',
+                        toPage: '',
                       ),
                       Categories(
-                          categoryIcon: 'assets/icons/task-check-icon.png',
-                          categoryName: 'Task Check List'
+                        categoryIcon: 'assets/icons/task-check-icon.png',
+                        categoryName: 'Task Check List',
+                        toPage: '/taskchecklistpage',
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: BackgroundContainer(
-                        boxHeight: 500,
-                        bgChild: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ContainerHeader(
-                              headerTitle: 'Recent Activity'
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 9),
-                              child: Text(
-                                'Check your recent updates',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            RecentActivities(
-                                imageIcon: 'assets/icons/task-check-icon.png',
-                                activityTitle: 'Renew Fire Extinguisher',
-                                activitySite: 'Site 1',
-                                currentProgress: 0.3)
-                          ],
-                        )
-                    ),
-                  ),
                 ],
               ),
+            ),
+            BackgroundContainer(
+                boxHeight: 400,
+                bgChild: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ContainerHeader(
+                        headerTitle: 'Recent Activity'
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 9),
+                      child: Text(
+                        'Check your recent updates',
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () => Navigator.pushNamed(context, '/alarmpage'),
+                      child: const RecentActivities(
+                        imageIcon: 'assets/icons/task-check-icon.png',
+                        activityTitle: 'Renew Fire Extinguisher',
+                        activitySite: 'Site 1',
+                        currentProgress: 0.3
+                      ),
+                    )
+                  ],
+                )
             ),
           ],
         ),

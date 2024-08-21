@@ -28,7 +28,7 @@ class _AlarmPageState extends State<AlarmPage> {
           appBarTitle: 'Renew Fire Extinguisher'
         )
       ),
-      bottomNavigationBar: const NavBar(currentPageIndex: 2),
+      bottomNavigationBar: NavBar(currentPageIndex: 2),
       body: Container(
         padding: const EdgeInsets.only(top: 70),
         decoration: const BoxDecoration(

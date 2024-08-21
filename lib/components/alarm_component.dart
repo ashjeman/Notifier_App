@@ -26,7 +26,7 @@ class _AlarmComponentState extends State<AlarmComponent> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextBoldGrey(boldText: 'Site is under construction. (Alarm Title)'),
+              TextBoldGrey(boldText: 'Site is under construction. '),
               Row(
                 children: [
                   TrafficIndicator(indicatorColor: Colors.red),
@@ -47,23 +47,36 @@ class _AlarmComponentState extends State<AlarmComponent> {
                 ],
               ),
               PopupMenuButton(
+                onSelected: selectAction,
                 iconColor: const  Color(0xFF747474),
                 itemBuilder: (context) => [
                   const PopupMenuItem(
                     value: 'Message',
-                    child: Text('Message'),
+                    child: ListTile(
+                      title: Text('Message'),
+                      leading: Icon(Icons.forum),
+                    ),
                   ),
                   const PopupMenuItem(
                     value: 'Camera',
-                    child: Text('Camera'),
+                    child: ListTile(
+                      title: Text('Camera'),
+                      leading: Icon(Icons.photo_camera),
+                    ),
                   ),
                   const PopupMenuItem(
                     value: 'Close Alarm',
-                    child: Text('Close Alarm'),
+                    child: ListTile(
+                      title: Text('Close Alarm'),
+                      leading: Icon(Icons.notifications_off),
+                    ),
                   ),
                   const PopupMenuItem(
-                    value: 'Check List',
-                    child: Text('Check List'),
+                    value: 'Checklist',
+                    child: ListTile(
+                      title: Text('Checklist'),
+                      leading: Icon(Icons.checklist),
+                    ),
                   )
                 ],
               ),
@@ -72,5 +85,17 @@ class _AlarmComponentState extends State<AlarmComponent> {
         ],
       ),
     );
+  }
+
+  void selectAction(String action){
+    if(action == 'Message'){
+      //Navigate to Message
+    } else if(action == 'Camera'){
+      //Navigate to Camera
+    } else if(action == 'Close Alarm'){
+      // Close Alarm
+    } else if(action == 'Checklist'){
+      Navigator.pushNamed(context, '/progresschecklistpage');
+    }
   }
 }
