@@ -140,36 +140,38 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            BackgroundContainer(
-                boxHeight: 400,
-                bgChild: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const ContainerHeader(
-                        headerTitle: 'Recent Activity'
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 9),
-                      child: Text(
-                        'Check your recent updates',
-                        style: TextStyle(
-                          fontSize: 12,
+            Expanded(
+                child: BackgroundContainer(
+                    boxHeight: 400,
+                    bgChild: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const ContainerHeader(
+                            headerTitle: 'Recent Activity'
                         ),
-                      ),
-                    ),
-                    GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () => Navigator.pushNamed(context, '/alarmpage'),
-                      child: const RecentActivities(
-                        imageIcon: 'assets/icons/task-check-icon.png',
-                        activityTitle: 'Renew Fire Extinguisher',
-                        activitySite: 'Site 1',
-                        currentProgress: 0.3
-                      ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 9),
+                          child: Text(
+                            'Check your recent updates',
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () => Navigator.pushNamed(context, '/alarmpage'),
+                          child: const RecentActivities(
+                              imageIcon: 'assets/icons/task-check-icon.png',
+                              activityTitle: 'Renew Fire Extinguisher',
+                              activitySite: 'Site 1',
+                              currentProgress: 0.3
+                          ),
+                        )
+                      ],
                     )
-                  ],
-                )
-            ),
+                ),
+            )
           ],
         ),
       ),

@@ -14,11 +14,11 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
           prefixIcon: const Icon(Icons.search),
           hintText: 'Search here',
-          filled: true,
-          fillColor: const Color(0xFF9DAEC3),
+          //filled: true,
+          //fillColor: const Color(0xFF9DAEC3),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
-              borderSide: const BorderSide(width: 0)
+              borderSide: const BorderSide(width: 1)
           )
       ),
     );

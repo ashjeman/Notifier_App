@@ -3,6 +3,8 @@ import 'package:notifier_app/pages/alarm_list_page.dart';
 import 'package:notifier_app/pages/asset_items_page.dart';
 import 'package:notifier_app/pages/asset_locations_page.dart';
 import 'package:notifier_app/pages/dashboard_page.dart';
+import 'package:notifier_app/pages/edit_asset_page.dart';
+import 'package:notifier_app/pages/edit_history_page.dart';
 import 'package:notifier_app/pages/home_page.dart';
 import 'package:notifier_app/pages/login_page.dart';
 import 'package:notifier_app/pages/alarm_page.dart';
@@ -31,9 +33,11 @@ class MyApp extends StatelessWidget {
         '/alarmlistpage': (context) => const AlarmListPage(),
         '/progresschecklistpage': (context) => const ProgressChecklistPage(),
         '/dashboardpage': (context) => const DashboardPage(),
-        '/taskchecklistpage': (contexxt) => const TaskCheckListPage(),
+        '/taskchecklistpage': (context) => const TaskCheckListPage(),
         '/assetlocationspage': (context) => const AssetLocationsPage(),
-        '/assetitemspage': (context) => const AssetItemsPage()
+        '/assetitemspage': (context) => const AssetItemsPage(),
+        '/edithistorypage': (context) => const EditHistoryPage(),
+        '/editassetpage': (context) => const EditAssetPage()
       },
     );
   }
