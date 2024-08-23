@@ -98,7 +98,7 @@ class AssetItemsComponent extends StatelessWidget {
       Navigator.pushNamed(context, '/edithistorypage');
     }
     else if (action == 'Edit') {
-      Navigator.pushNamed(context, '/editassetpage');
+      Navigator.pushNamed(context, '/edithistorypage');
     }
     else if (action == 'Delete') {
       // Navigate to Delete'

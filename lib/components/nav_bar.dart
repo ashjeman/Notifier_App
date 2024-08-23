@@ -32,7 +32,7 @@ class _NavBarState extends State<NavBar> {
                 case 0: Navigator.pushNamed(context, '/homepage'); break;
                 case 1: Navigator.pushNamed(context, '/dashboardpage'); break;
                 case 2: Navigator.pushNamed(context, '/alarmlistpage'); break;
-                case 3: //Navigator.pushNamed(context, '/alarmpage'); break;
+                case 3: Navigator.pushNamed(context, '/chathistorypage'); break;
               }
 
             });

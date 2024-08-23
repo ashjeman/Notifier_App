@@ -40,7 +40,10 @@ class CustomAppBar extends StatelessWidget{
               Icons.logout,
               color: Color(0xFF070458),
             ),
-            callback: (){}
+            callback: (){
+              Navigator.popUntil(context, ModalRoute.withName('/homepage'));
+              Navigator.pop(context);
+            }
         ),
         const SizedBox(
           width: 10,

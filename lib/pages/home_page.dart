@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                       Categories(
                         categoryIcon: 'assets/icons/asset-icon.png',
                         categoryName: 'Asset',
-                        toPage: '/assetitemspage',
+                        toPage: '/assetinspectionpage',
                       ),
                       Categories(
                         categoryIcon: 'assets/icons/task-check-icon.png',

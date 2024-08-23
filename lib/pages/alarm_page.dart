@@ -5,8 +5,6 @@ import 'package:notifier_app/components/custom_app_bar.dart';
 
 import '../components/nav_bar.dart';
 
-const List<String> progressType = <String>['Pending', 'Camera', 'Close Alarm', 'Check List'];
-
 class AlarmPage extends StatefulWidget {
   String currentProgress = 'Pending';
   AlarmPage({

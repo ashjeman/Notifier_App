@@ -14,6 +14,7 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
           prefixIcon: const Icon(Icons.search),
           hintText: 'Search here',
+          contentPadding: const EdgeInsets.all(5),
           //filled: true,
           //fillColor: const Color(0xFF9DAEC3),
           enabledBorder: OutlineInputBorder(
