@@ -3,65 +3,76 @@ import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
 class ChatHistoryComponent extends StatelessWidget {
-  const ChatHistoryComponent({super.key});
+  String groupName;
+  String recentMessage;
+  String recentMessageTime;
+
+  ChatHistoryComponent({
+    super.key,
+    required this.groupName,
+    required this.recentMessage,
+    required this.recentMessageTime,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.only(top: 10),
-        decoration: BoxDecoration(
-            color: const Color(0xFFE9E9E9),
-            borderRadius: BorderRadius.circular(10.0)
-        ),
-        child: Row(
-          children: [
-            Container(
-              child: Image.asset(
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, '/chatpage'),
+      child: Container(
+          padding: const EdgeInsets.all(15),
+          margin: const EdgeInsets.only(top: 10),
+          decoration: BoxDecoration(
+              color: const Color(0xFFE9E9E9),
+              borderRadius: BorderRadius.circular(10.0)
+          ),
+          child: Row(
+            children: [
+              Image.asset(
                 'assets/images/profile.png',
                 width: 80,
                 height: 80,
               ),
-            ),
-            const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextBoldGrey(boldText: 'Car parking violation'),
-                TextGrey(textDetails: 'Alert for parking'),
-                TextGrey(textDetails: '12:09 PM')
-                
-              ],
-            ),
-            Row(
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextBoldGrey(boldText: groupName),
+                  TextGrey(textDetails: recentMessage),
+                  TextGrey(textDetails: recentMessageTime)
 
-              children: [
-                const SizedBox(width: 66 ),
-                PopupMenuButton(
-                  onSelected: (action) => selectAction(context, action),
-                  iconColor: const Color(0xFF747474),
-                  itemBuilder: (context) =>
-                  [
-                    const PopupMenuItem(
-                      value: 'Check List',
-                      child: ListTile(
-                        title: Text('Check List'),
-                        leading: Icon(Icons.checklist),
+                ],
+              ),
+              Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      PopupMenuButton(
+                        onSelected: (action) => selectAction(context, action),
+                        iconColor: const Color(0xFF747474),
+                        itemBuilder: (context) =>
+                        [
+                          const PopupMenuItem(
+                            value: 'Check List',
+                            child: ListTile(
+                              title: Text('Check List'),
+                              leading: Icon(Icons.checklist),
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            value: 'Users List',
+                            child: ListTile(
+                              title: Text('Users List'),
+                              leading: Icon(Icons.people),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const PopupMenuItem(
-                      value: 'Users List',
-                      child: ListTile(
-                        title: Text('Users List'),
-                        leading: Icon(Icons.people),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            )
-          ],
-        )
+                    ],
+                  )
+              )
+            ],
+          )
+      ),
     );
   }
 

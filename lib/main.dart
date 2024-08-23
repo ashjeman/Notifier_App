@@ -5,6 +5,7 @@ import 'package:notifier_app/pages/asset_inspection_page.dart';
 import 'package:notifier_app/pages/asset_items_page.dart';
 import 'package:notifier_app/pages/asset_locations_page.dart';
 import 'package:notifier_app/pages/chat_history_page.dart';
+import 'package:notifier_app/pages/chat_page.dart';
 import 'package:notifier_app/pages/dashboard_page.dart';
 import 'package:notifier_app/pages/edit_asset_page.dart';
 import 'package:notifier_app/pages/edit_history_page.dart';
@@ -43,7 +44,8 @@ class MyApp extends StatelessWidget {
         '/editassetpage': (context) => const EditAssetPage(),
         '/assetinspectionpage': (context) => const AssetInspectionPage(),
         '/addinspectiondialog': (context) => const AddInspectionDialog(),
-        '/chathistorypage': (context) => const ChatHistoryPage()
+        '/chathistorypage': (context) => const ChatHistoryPage(),
+        '/chatpage': (context) => const ChatPage()
       },
     );
   }

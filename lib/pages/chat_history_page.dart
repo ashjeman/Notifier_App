@@ -37,37 +37,41 @@ class _ChatHistoryPageState extends State<ChatHistoryPage> {
             ),
           ),
           child: BackgroundContainer(
-              boxHeight: 800,
-              bgChild: Column(
-                children: [
-                  const SizedBox(height: 10),
-                  const SearchField(),
-                  const SizedBox(height: 10),
-                  CupertinoSlidingSegmentedControl(
-                    children: const {
-                      0: Text('Open'),
-                      1: Text('Acknowledge'),
-                      2: Text('Close')
-                    },
-                    groupValue: _sliding,
-                    onValueChanged: (int? newValue) {
-                      setState(() {
-                        _sliding = newValue;
-                      });
-                    },
-                    backgroundColor: const Color(0xFFD9D9D9),
-                    thumbColor: const Color(0xFFADA1F8),
-                  ),
-                  const SizedBox(height: 10),
-                  Column(
-                    children: [
-                      ChatHistoryComponent()
-                    ],
-                  )
-                ],
-              )
-          ),
-        )
+            boxHeight: 800,
+            bgChild: Column(
+              children: [
+                const SizedBox(height: 10),
+                const SearchField(),
+                const SizedBox(height: 10),
+                CupertinoSlidingSegmentedControl(
+                  children: const {
+                    0: Text('Open'),
+                    1: Text('Acknowledge'),
+                    2: Text('Close')
+                  },
+                  groupValue: _sliding,
+                  onValueChanged: (int? newValue) {
+                    setState(() {
+                      _sliding = newValue;
+                    });
+                  },
+                  backgroundColor: const Color(0xFFD9D9D9),
+                  thumbColor: const Color(0xFFADA1F8),
+                ),
+                const SizedBox(height: 10),
+                Column(
+                  children: [
+                    ChatHistoryComponent(
+                      groupName: 'Car parking violation',
+                      recentMessage: 'Alert for parking',
+                      recentMessageTime: '12:09 pm',
+                    )
+                  ]
+                )
+                  ],
+            )
+          )
+        ),
     );
   }
   int? _sliding = 0;
