@@ -18,11 +18,12 @@ class _AssetDetailsPageState extends State<AssetDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: CustomAppBar(
-              appBarTitle: 'Edit Asset'
+              appBarTitle: 'View Asset'
           )
       ),
       bottomNavigationBar: NavBar(currentPageIndex: 2),

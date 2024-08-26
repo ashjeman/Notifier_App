@@ -16,15 +16,17 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60),
-            child: CustomAppBar(
-                appBarTitle: 'Asset Location'
-            )
-        ),
-        bottomNavigationBar: NavBar(currentPageIndex: 0),
-        body: Container(
+      resizeToAvoidBottomInset : false,
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: CustomAppBar(
+            appBarTitle: 'Message'
+        )
+      ),
+      bottomNavigationBar: NavBar(currentPageIndex: 0),
+      body: Flexible(
+        child: Container(
           padding: const EdgeInsets.only(top: 70),
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -74,58 +76,59 @@ class _ChatPageState extends State<ChatPage> {
                     ],
                   ),
                 ),
-                Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          width: double.infinity,
-                          height: 610,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                      suffixIcon: const Icon(Icons.attach_file),
-                                      hintText: 'Your thoughts...',
-                                      contentPadding: const EdgeInsets.only(left: 10),
-                                      //filled: true,
-                                      //fillColor: const Color(0xFF9DAEC3),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(20.0),
-                                          borderSide: const BorderSide(width: 0)
-                                      )
-                                  ),
-                                )
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(left: 10),
-                                width: 50,
-                                height: 50,
-                                padding: const EdgeInsets.all(13),
-                                child: Image.asset('assets/icons/send-icon.png'),
-                                decoration: BoxDecoration(
+                Flexible(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        width: double.infinity,
+                        height: 610,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  suffixIcon: const Icon(Icons.attach_file),
+                                  hintText: 'Your thoughts...',
+                                  contentPadding: const EdgeInsets.only(left: 10),
+                                  //filled: true,
+                                  //fillColor: const Color(0xFF9DAEC3),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: const BorderSide(width: 0)
+                                  )
+                                ),
+                              )
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(left: 10),
+                              width: 50,
+                              height: 50,
+                              padding: const EdgeInsets.all(13),
+                              decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   color: Color(0xFFC9D7EB)
-                                ),
                               ),
-                            ],
-                          ),
-                        )
-                      ],
-                    )
+                              child: Image.asset('assets/icons/send-icon.png'),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  )
                 )
               ],
             )
 
           )
-          )
+        )
+      )
     );
   }
 }

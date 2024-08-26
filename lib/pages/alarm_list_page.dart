@@ -23,6 +23,7 @@ class _AlarmListPageState extends State<AlarmListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),

@@ -20,6 +20,7 @@ class _AssetItemsPageState extends State<AssetItemsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset : false,
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),

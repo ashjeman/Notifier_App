@@ -22,6 +22,7 @@ class _AddInspectionDialogState extends State<AddInspectionDialog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       backgroundColor: Color(0xFF1F0143),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),

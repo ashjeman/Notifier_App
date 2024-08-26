@@ -20,73 +20,74 @@ class _TaskCheckListPageState extends State<TaskCheckListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60),
-            child: CustomAppBar(
-                appBarTitle: 'Task Check List'
-            )
-        ),
-        bottomNavigationBar: NavBar(currentPageIndex: 0),
-        body: Container(
-          padding: const EdgeInsets.only(top: 70),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/app-bg.png'),
-              fit: BoxFit.cover, // This makes sure the image covers the entire background
-            ),
+      resizeToAvoidBottomInset : false,
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: CustomAppBar(
+            appBarTitle: 'Task Check List'
+        )
+      ),
+      bottomNavigationBar: NavBar(currentPageIndex: 0),
+      body: Container(
+        padding: const EdgeInsets.only(top: 70),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/app-bg.png'),
+            fit: BoxFit.cover, // This makes sure the image covers the entire background
           ),
-          child: BackgroundContainer(
-              boxHeight: 800,
-              bgChild: Column(
+        ),
+        child: BackgroundContainer(
+          boxHeight: 800,
+          bgChild: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ContainerHeader(headerTitle: 'Tasks'),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/taskassignmentpage');
-                          },
-                        child: const Expanded(child: Icon(
-                          Icons.add,
-                          size: 28,
-                        ),),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const SearchField(),
-                  const SizedBox(height: 10),
-                  CupertinoSlidingSegmentedControl(
-                    children: const {
-                      0: Text('Open'),
-                      1: Text('Acknowledge'),
-                      2: Text('Close')
-                    },
-                    groupValue: _sliding,
-                    onValueChanged: (int? newValue) {
-                      setState(() {
-                        _sliding = newValue;
-                      });
-                    },
-                    backgroundColor: const Color(0xFFD9D9D9),
-                    thumbColor: const Color(0xFFADA1F8),
-                  ),
-                  const SizedBox(height: 10),
-                  const Column(
-                    children: [
-                      TaskCheckComponent(
-                          taskTitle: 'Meet with client',
-                          taskCategory: 'CCTV',
-                          taskDate: '30/4/2024',
-                      )
-                    ],
+                  ContainerHeader(headerTitle: 'Tasks'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/taskassignmentpage');
+                      },
+                    child: const Expanded(child: Icon(
+                      Icons.add,
+                      size: 28,
+                    ),),
+                  )
+                ],
+              ),
+              const SizedBox(height: 10),
+              const SearchField(),
+              const SizedBox(height: 10),
+              CupertinoSlidingSegmentedControl(
+                children: const {
+                  0: Text('Open'),
+                  1: Text('Acknowledge'),
+                  2: Text('Close')
+                },
+                groupValue: _sliding,
+                onValueChanged: (int? newValue) {
+                  setState(() {
+                    _sliding = newValue;
+                  });
+                },
+                backgroundColor: const Color(0xFFD9D9D9),
+                thumbColor: const Color(0xFFADA1F8),
+              ),
+              const SizedBox(height: 10),
+              const Column(
+                children: [
+                  TaskCheckComponent(
+                      taskTitle: 'Meet with client',
+                      taskCategory: 'CCTV',
+                      taskDate: '30/4/2024',
                   )
                 ],
               )
-          ),
-        )
+            ],
+          )
+        ),
+      )
     );
   }
 }

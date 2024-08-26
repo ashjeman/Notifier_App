@@ -29,6 +29,7 @@ class _AssetInspectionPageState extends State<AssetInspectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
