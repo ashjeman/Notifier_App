@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
-import 'package:notifier_app/components/text_grey.dart';
-import 'package:notifier_app/components/traffic_indicator.dart';
 
 class AssetItemsComponent extends StatelessWidget {
   const AssetItemsComponent({super.key});

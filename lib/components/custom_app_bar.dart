@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/top_right_button.dart';
 
 class CustomAppBar extends StatelessWidget{
   String appBarTitle;

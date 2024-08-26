@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/edit_history_component.dart';
 
-import '../components/asset_items_component.dart';
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
 import '../components/nav_bar.dart';

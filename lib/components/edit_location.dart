@@ -12,7 +12,7 @@ class _EditLocationState extends State<EditLocation> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Edit Location'),
-      content: TextField(
+      content: const TextField(
         decoration: InputDecoration(
           hintText: "New location name"
         ),

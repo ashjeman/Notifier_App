@@ -18,10 +18,10 @@ class _ManualAlarmFieldState extends State<ManualAlarmField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
-            ImageIcon(AssetImage(widget.fieldIconPath), color: Color(0xff224B87)),
+            ImageIcon(AssetImage(widget.fieldIconPath), color: const Color(0xff224B87)),
             const SizedBox(width: 15),
             Text(
               widget.fieldName,

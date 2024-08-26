@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/header.dart';
-import 'package:notifier_app/components/search_field.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
@@ -39,8 +37,6 @@ class _AssetInspectionComponentState extends State<AssetInspectionComponent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

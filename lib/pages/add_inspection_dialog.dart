@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/save_button.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
@@ -23,7 +22,7 @@ class _AddInspectionDialogState extends State<AddInspectionDialog> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset : false,
-      backgroundColor: Color(0xFF1F0143),
+      backgroundColor: const Color(0xFF1F0143),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
         //padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
@@ -123,8 +122,8 @@ class _AddInspectionDialogState extends State<AddInspectionDialog> {
                             children: [
                               Text(
                                   '${inspectionTime.hour}:${inspectionTime.minute}'),
-                              SizedBox(width: 5),
-                              Icon(Icons.schedule),
+                              const SizedBox(width: 5),
+                              const Icon(Icons.schedule),
                             ],
                           ),
                         ),

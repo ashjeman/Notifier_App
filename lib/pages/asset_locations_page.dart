@@ -35,11 +35,11 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
               fit: BoxFit.cover, // This makes sure the image covers the entire background
             ),
           ),
-          child: BackgroundContainer(
+          child: const BackgroundContainer(
               boxHeight: 800,
               bgChild: Column(
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ContainerHeader(headerTitle: 'Location List'),
@@ -49,9 +49,9 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
-                  const SearchField(),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
+                  SearchField(),
+                  SizedBox(height: 10),
                   Column(
                     children: [
                       AssetLocationsComponent(

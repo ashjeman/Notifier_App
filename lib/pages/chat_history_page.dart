@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/chat_history_component.dart';
 
-import '../components/asset_locations_component.dart';
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
-import '../components/header.dart';
 import '../components/nav_bar.dart';
 import '../components/search_field.dart';
 

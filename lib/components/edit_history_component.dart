@@ -16,12 +16,10 @@ class EditHistoryComponent extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              child: Image.asset(
-                'assets/images/desktop.png',
-                width: 70,
-                height: 70,
-              ),
+            Image.asset(
+              'assets/images/desktop.png',
+              width: 70,
+              height: 70,
             ),
             const SizedBox(width: 10),
             Column(

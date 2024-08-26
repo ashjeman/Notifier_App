@@ -4,9 +4,6 @@ import 'package:notifier_app/components/alarm_component.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/search_field.dart';
-import 'package:notifier_app/components/text_bold_grey.dart';
-import 'package:notifier_app/components/text_grey.dart';
-import 'package:notifier_app/components/traffic_indicator.dart';
 
 import '../components/custom_app_bar.dart';
 import '../components/nav_bar.dart';

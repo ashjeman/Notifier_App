@@ -18,11 +18,11 @@ import 'package:notifier_app/pages/task_assignment_page.dart';
 import 'package:notifier_app/pages/task_check_list_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const NotifierApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class NotifierApp extends StatelessWidget {
+  const NotifierApp({super.key});
 
   // This widget is the root of your application.
   @override

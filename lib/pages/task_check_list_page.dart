@@ -44,7 +44,7 @@ class _TaskCheckListPageState extends State<TaskCheckListPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ContainerHeader(headerTitle: 'Tasks'),
+                  const ContainerHeader(headerTitle: 'Tasks'),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, '/taskassignmentpage');

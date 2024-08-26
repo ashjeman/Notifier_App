@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/edit_location.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
-import 'package:notifier_app/components/traffic_indicator.dart';
 
 class AssetLocationsComponent extends StatelessWidget {
   final String locationName;
   final String noOfAssets;
 
-  AssetLocationsComponent({
+  const AssetLocationsComponent({
     super.key,
     required this.locationName,
     required this.noOfAssets,
@@ -58,10 +57,10 @@ class AssetLocationsComponent extends StatelessWidget {
             children: [
               Expanded(
                 child: LinearProgressIndicator(
-                  backgroundColor: const Color(0xFF8D97A5),
+                  backgroundColor: Color(0xFF8D97A5),
                   value: 0.7,
                   minHeight: 10,
-                  valueColor: AlwaysStoppedAnimation<Color>(const Color(0xFF355992)),
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF355992)),
                 ),
               ),
               SizedBox(width: 7),
@@ -81,7 +80,7 @@ class AssetLocationsComponent extends StatelessWidget {
     if (action == 'Edit') {
       showDialog(
         context: context,
-        builder: (BuildContext context) => EditLocation(),
+        builder: (BuildContext context) => const EditLocation(),
       );
     } else if (action == 'Delete') {
       // Navigate to User List

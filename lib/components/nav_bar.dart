@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_app/main.dart';
 
 class NavBar extends StatefulWidget {
   int currentPageIndex;

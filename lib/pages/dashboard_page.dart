@@ -42,9 +42,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 const SizedBox(height: 40),
                 EasyPieChart(
                   children: [
-                    PieData(value: 30, color: Color(0xFF6A31E3)),
-                    PieData(value: 30, color: Color(0xFF373144)),
-                    PieData(value: 30, color: Color(0xFF8172A1))
+                    PieData(value: 30, color: const Color(0xFF6A31E3)),
+                    PieData(value: 30, color: const Color(0xFF373144)),
+                    PieData(value: 30, color: const Color(0xFF8172A1))
                   ],
                   borderWidth: 50,
                   centerText: 'Latest Percentage',

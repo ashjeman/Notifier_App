@@ -84,7 +84,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                             ),
                             child: Row(
                               children: [
-                                Text('${taskDate.day}/${taskDate.month}/${taskDate.year}', style: TextStyle(fontWeight: FontWeight.bold),),
+                                Text('${taskDate.day}/${taskDate.month}/${taskDate.year}', style: const TextStyle(fontWeight: FontWeight.bold),),
                               ],
                             ),
                           ),

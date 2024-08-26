@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/background_container.dart';
@@ -7,7 +6,6 @@ import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/nav_bar.dart';
 import 'package:notifier_app/components/recent_activities.dart';
 import 'package:notifier_app/components/top_right_button.dart';
-import 'package:notifier_app/main.dart';
 
 class HomePage extends StatefulWidget {
 

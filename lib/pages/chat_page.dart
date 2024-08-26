@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
-import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
 import '../components/nav_bar.dart';
 
@@ -113,7 +112,7 @@ class _ChatPageState extends State<ChatPage> {
                               padding: const EdgeInsets.all(13),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
-                                  color: Color(0xFFC9D7EB)
+                                  color: const Color(0xFFC9D7EB)
                               ),
                               child: Image.asset('assets/icons/send-icon.png'),
                             ),
