@@ -40,14 +40,19 @@ class _TaskCheckListPageState extends State<TaskCheckListPage> {
               boxHeight: 800,
               bgChild: Column(
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ContainerHeader(headerTitle: 'Tasks'),
-                      Icon(
-                        Icons.tune,
-                        size: 28,
-                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/taskassignmentpage');
+                          },
+                        child: const Expanded(child: Icon(
+                          Icons.add,
+                          size: 28,
+                        ),),
+                      )
                     ],
                   ),
                   const SizedBox(height: 10),

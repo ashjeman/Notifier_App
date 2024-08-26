@@ -24,31 +24,6 @@ class CustomAppBar extends StatelessWidget{
             fontWeight: FontWeight.bold
         ),
       ),
-      actions: [
-        TopRightButton(
-            icon: const Icon(
-              Icons.notifications,
-              color: Color(0xFF070458),
-            ),
-            callback: (){}
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        TopRightButton(
-            icon: const Icon(
-              Icons.logout,
-              color: Color(0xFF070458),
-            ),
-            callback: (){
-              Navigator.popUntil(context, ModalRoute.withName('/homepage'));
-              Navigator.pop(context);
-            }
-        ),
-        const SizedBox(
-          width: 10,
-        )
-      ],
     );
   }
 }

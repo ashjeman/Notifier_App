@@ -43,7 +43,7 @@ class _ChatPageState extends State<ChatPage> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Row(
                     children: [
                       Image.asset(

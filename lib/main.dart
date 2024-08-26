@@ -7,12 +7,14 @@ import 'package:notifier_app/pages/asset_locations_page.dart';
 import 'package:notifier_app/pages/chat_history_page.dart';
 import 'package:notifier_app/pages/chat_page.dart';
 import 'package:notifier_app/pages/dashboard_page.dart';
-import 'package:notifier_app/pages/edit_asset_page.dart';
+import 'package:notifier_app/pages/asset_details_page.dart';
 import 'package:notifier_app/pages/edit_history_page.dart';
 import 'package:notifier_app/pages/home_page.dart';
 import 'package:notifier_app/pages/login_page.dart';
-import 'package:notifier_app/pages/alarm_page.dart';
+import 'package:notifier_app/pages/task_details_page.dart';
+import 'package:notifier_app/pages/manual_alarm_page.dart';
 import 'package:notifier_app/pages/progress_checklist_page.dart';
+import 'package:notifier_app/pages/task_assignment_page.dart';
 import 'package:notifier_app/pages/task_check_list_page.dart';
 
 void main() {
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/homepage': (context) => const HomePage(),
         '/loginpage': (context) => const LoginPage(),
-        '/alarmpage': (context) => AlarmPage(),
+        '/taskdetailspage': (context) => TaskDetailsPage(),
         '/alarmlistpage': (context) => const AlarmListPage(),
         '/progresschecklistpage': (context) => const ProgressChecklistPage(),
         '/dashboardpage': (context) => const DashboardPage(),
@@ -41,11 +43,13 @@ class MyApp extends StatelessWidget {
         '/assetlocationspage': (context) => const AssetLocationsPage(),
         '/assetitemspage': (context) => const AssetItemsPage(),
         '/edithistorypage': (context) => const EditHistoryPage(),
-        '/editassetpage': (context) => const EditAssetPage(),
+        '/assetdetailspage': (context) => const AssetDetailsPage(),
         '/assetinspectionpage': (context) => const AssetInspectionPage(),
         '/addinspectiondialog': (context) => const AddInspectionDialog(),
         '/chathistorypage': (context) => const ChatHistoryPage(),
-        '/chatpage': (context) => const ChatPage()
+        '/chatpage': (context) => const ChatPage(),
+        '/manualalarmpage': (context) => const ManualAlarmPage(),
+        '/taskassignmentpage': (context) => const TaskAssignmentPage()
       },
     );
   }

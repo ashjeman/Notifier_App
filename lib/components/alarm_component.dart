@@ -58,10 +58,10 @@ class _AlarmComponentState extends State<AlarmComponent> {
                     ),
                   ),
                   const PopupMenuItem(
-                    value: 'Camera',
+                    value: 'Playback',
                     child: ListTile(
-                      title: Text('Camera'),
-                      leading: Icon(Icons.photo_camera),
+                      title: Text('Playback'),
+                      leading: Icon(Icons.play_arrow),
                     ),
                   ),
                   const PopupMenuItem(
@@ -89,8 +89,8 @@ class _AlarmComponentState extends State<AlarmComponent> {
 
   void selectAction(String action){
     if(action == 'Message'){
-      //Navigate to Message
-    } else if(action == 'Camera'){
+      Navigator.pushNamed(context, '/chatpage');
+    } else if(action == 'Playback'){
       //Navigate to Camera
     } else if(action == 'Close Alarm'){
       // Close Alarm

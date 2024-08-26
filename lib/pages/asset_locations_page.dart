@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/asset_locations_component.dart';
@@ -7,7 +6,6 @@ import '../components/custom_app_bar.dart';
 import '../components/header.dart';
 import '../components/nav_bar.dart';
 import '../components/search_field.dart';
-import '../components/task_check_component.dart';
 
 class AssetLocationsPage extends StatefulWidget {
   const AssetLocationsPage({super.key});
@@ -52,22 +50,6 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                   ),
                   const SizedBox(height: 10),
                   const SearchField(),
-                  const SizedBox(height: 10),
-                  CupertinoSlidingSegmentedControl(
-                    children: const {
-                      0: Text('Open'),
-                      1: Text('Acknowledge'),
-                      2: Text('Close')
-                    },
-                    groupValue: _sliding,
-                    onValueChanged: (int? newValue) {
-                      setState(() {
-                        _sliding = newValue;
-                      });
-                    },
-                    backgroundColor: const Color(0xFFD9D9D9),
-                    thumbColor: const Color(0xFFADA1F8),
-                  ),
                   const SizedBox(height: 10),
                   Column(
                     children: [

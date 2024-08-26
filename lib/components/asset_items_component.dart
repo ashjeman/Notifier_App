@@ -17,12 +17,10 @@ class AssetItemsComponent extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            child: Image.asset(
-              'assets/images/profile.png',
-              width: 80,
-              height: 80,
-            ),
+          Image.asset(
+            'assets/images/profile.png',
+            width: 80,
+            height: 80,
           ),
           const SizedBox(width: 10),
           Column(
@@ -51,7 +49,7 @@ class AssetItemsComponent extends StatelessWidget {
               ),
             ],
           ),
-          const  SizedBox(width: 120),
+          const Expanded(child: SizedBox()),
           PopupMenuButton(
             onSelected: (action) => selectAction(context, action),
             iconColor: const Color(0xFF747474),
@@ -71,13 +69,6 @@ class AssetItemsComponent extends StatelessWidget {
                 ),
               ),
               const PopupMenuItem(
-                value: 'Edit',
-                child: ListTile(
-                  title: Text('Edit'),
-                  leading: Icon(Icons.edit),
-                ),
-              ),
-              const PopupMenuItem(
                 value: 'Delete',
                 child: ListTile(
                   title: Text('Delete'),
@@ -93,14 +84,10 @@ class AssetItemsComponent extends StatelessWidget {
 
   void selectAction(BuildContext context, String action){
     if (action == 'View') {
-      // Navigate to View
+      Navigator.pushNamed(context, '/assetdetailspage');
     } else if (action == 'History') {
       Navigator.pushNamed(context, '/edithistorypage');
-    }
-    else if (action == 'Edit') {
-      Navigator.pushNamed(context, '/edithistorypage');
-    }
-    else if (action == 'Delete') {
+    } else if (action == 'Delete') {
       // Navigate to Delete'
     }
   }

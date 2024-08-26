@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/edit_form.dart';
 import 'package:notifier_app/components/save_button.dart';
 
-import '../components/alarm_details.dart';
+import '../components/task_details.dart';
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
 import '../components/nav_bar.dart';
 
-class EditAssetPage extends StatefulWidget {
-  const EditAssetPage({super.key});
+class AssetDetailsPage extends StatefulWidget {
+  const AssetDetailsPage({super.key});
 
   @override
-  State<EditAssetPage> createState() => _EditAssetPageState();
+  State<AssetDetailsPage> createState() => _AssetDetailsPageState();
 }
 
-class _EditAssetPageState extends State<EditAssetPage> {
+class _AssetDetailsPageState extends State<AssetDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,10 +38,13 @@ class _EditAssetPageState extends State<EditAssetPage> {
               boxHeight: 800,
               bgChild: Column(
                 children: [
-                  Image.asset(
-                      'assets/images/profile.png',
-                      height: 150,
-                      width: 150
+                  Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFB2BED0),
+                        borderRadius: BorderRadius.circular(10)
+                    ),
                   ),
                   Container(
                     padding: const EdgeInsets.all(20),

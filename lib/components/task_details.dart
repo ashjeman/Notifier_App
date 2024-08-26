@@ -4,7 +4,7 @@ import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 import 'package:notifier_app/components/traffic_indicator.dart';
 
-class AlarmDetails extends StatefulWidget {
+class TaskDetails extends StatefulWidget {
 
   String alarmTitle;
   String alarmGroup;
@@ -13,7 +13,7 @@ class AlarmDetails extends StatefulWidget {
   String alarmAssignedTo;
   String alarmAssignedBy;
 
-  AlarmDetails({
+  TaskDetails({
     super.key,
     required this.alarmTitle,
     required this.alarmGroup,
@@ -24,11 +24,11 @@ class AlarmDetails extends StatefulWidget {
   });
 
   @override
-  State<AlarmDetails> createState() => _AlarmDetailsState();
+  State<TaskDetails> createState() => _TaskDetailsState();
 }
 
-class _AlarmDetailsState extends State<AlarmDetails> {
-  String currentStatus = 'Pending';
+class _TaskDetailsState extends State<TaskDetails> {
+  String currentStatus = 'Open';
 
   @override
   Widget build(BuildContext context) {
@@ -105,20 +105,16 @@ class _AlarmDetailsState extends State<AlarmDetails> {
                           value: currentStatus,
                           items: const [
                             DropdownMenuItem(
-                              value: 'Pending',
-                              child: Text('Pending'),
+                              value: 'Open',
+                              child: Text('Open'),
                             ),
                             DropdownMenuItem(
-                              value: 'Camera',
-                              child: Text('Camera'),
+                              value: 'Acknowledge',
+                              child: Text('Acknowledge'),
                             ),
                             DropdownMenuItem(
-                              value: 'Close Alarm',
-                              child: Text('Close Alarm'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'Check List',
-                              child: Text('Check List'),
+                              value: 'Closed',
+                              child: Text('Closed'),
                             ),
                           ],
                           onChanged:  (String? newValue) {
@@ -126,7 +122,7 @@ class _AlarmDetailsState extends State<AlarmDetails> {
                               currentStatus = newValue!;
                             });
                           }
-                      )
+                      ),
                     ],
                   )
                 ],

@@ -65,17 +65,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       GestureDetector(
                         onTap: (){},
-                        child: TopRightButton(
-                            icon: const Icon(
-                              Icons.notifications,
-                              color: Color(0xFF070458),
-                            ),
-                            callback: (){}
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
+                        child:
                       TopRightButton(
                           icon: const Icon(
                             Icons.logout,
@@ -83,25 +73,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                           callback: () => Navigator.pushNamed(context, '/loginpage')
                       ),
-                      const SizedBox(width: 15,)
+                      ),
+                      const SizedBox(width: 10)
                     ],
                   ),
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, left: 15, right: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 17),
-                    prefixIcon: const Icon(Icons.search),
-                    hintText: 'Search here',
-                    filled: true,
-                    fillColor: const Color(0xFF9DAEC3),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                    )
-                ),
               ),
             ),
             BackgroundContainer(
@@ -117,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                       Categories(
                         categoryIcon: 'assets/icons/manual-alarm-icon.png',
                         categoryName: 'Manual Alarm',
-                        toPage: '',
+                        toPage: '/manualalarmpage',
 
                       ),
                       Categories(
@@ -128,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                       Categories(
                         categoryIcon: 'assets/icons/asset-icon.png',
                         categoryName: 'Asset',
-                        toPage: '/assetinspectionpage',
+                        toPage: '/assetitemspage',
                       ),
                       Categories(
                         categoryIcon: 'assets/icons/task-check-icon.png',
@@ -147,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const ContainerHeader(
-                            headerTitle: 'Recent Activity'
+                            headerTitle: 'Recent Tasks'
                         ),
                         const Padding(
                           padding: EdgeInsets.only(left: 9),
@@ -158,16 +134,20 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: () => Navigator.pushNamed(context, '/alarmpage'),
-                          child: const RecentActivities(
-                              imageIcon: 'assets/icons/task-check-icon.png',
-                              activityTitle: 'Renew Fire Extinguisher',
-                              activitySite: 'Site 1',
-                              currentProgress: 0.3
+                        SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                            child: const RecentActivities(
+                                imageIcon: 'assets/icons/task-check-icon.png',
+                                activityTitle: 'Renew Fire Extinguisher',
+                                activitySite: 'Site 1',
+                                currentProgress: 0.3
+                            ),
                           ),
-                        )
+                        ),
+
                       ],
                     )
                 ),
