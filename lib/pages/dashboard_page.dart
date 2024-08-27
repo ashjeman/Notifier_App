@@ -22,7 +22,7 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: CustomAppBar(
-              appBarTitle: 'Renew Fire Extinguisher'
+              appBarTitle: 'Dashboard'
           )
       ),
       bottomNavigationBar: NavBar(currentPageIndex: 1),

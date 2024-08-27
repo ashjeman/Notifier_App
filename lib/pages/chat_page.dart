@@ -62,15 +62,18 @@ class _ChatPageState extends State<ChatPage> {
                           TextGrey(textDetails: 'Severity level: high')
                         ],
                       ),
-                      const Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(Icons.people),
-                              SizedBox(width: 5),
-                              Icon(Icons.checklist)
-                            ],
-                          )
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(Icons.people),
+                            const SizedBox(width: 5),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(context, '/progresschecklistpage'),
+                              child: const Icon(Icons.checklist),
+                            )
+                          ],
+                        )
                       )
                     ],
                   ),
@@ -124,7 +127,6 @@ class _ChatPageState extends State<ChatPage> {
                 )
               ],
             )
-
           )
         )
       )

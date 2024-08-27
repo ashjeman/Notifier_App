@@ -58,14 +58,42 @@ class _ChatHistoryPageState extends State<ChatHistoryPage> {
                 thumbColor: const Color(0xFFADA1F8),
               ),
               const SizedBox(height: 10),
-              Column(
-                children: [
-                  ChatHistoryComponent(
-                    groupName: 'Car parking violation',
-                    recentMessage: 'Alert for parking',
-                    recentMessageTime: '12:09 pm',
+              Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.only(top: 0.0),
+                    children: [
+                      ChatHistoryComponent(
+                        groupName: 'Car parking violation',
+                        recentMessage: 'Alert for parking',
+                        recentMessageTime: '12:09 pm',
+                      ),
+                      ChatHistoryComponent(
+                        groupName: 'Car parking violation',
+                        recentMessage: 'Alert for parking',
+                        recentMessageTime: '12:09 pm',
+                      ),
+                      ChatHistoryComponent(
+                        groupName: 'Car parking violation',
+                        recentMessage: 'Alert for parking',
+                        recentMessageTime: '12:09 pm',
+                      ),
+                      ChatHistoryComponent(
+                        groupName: 'Car parking violation',
+                        recentMessage: 'Alert for parking',
+                        recentMessageTime: '12:09 pm',
+                      ),
+                      ChatHistoryComponent(
+                        groupName: 'Car parking violation',
+                        recentMessage: 'Alert for parking',
+                        recentMessageTime: '12:09 pm',
+                      ),
+                      ChatHistoryComponent(
+                        groupName: 'Car parking violation',
+                        recentMessage: 'Alert for parking',
+                        recentMessageTime: '12:09 pm',
+                      ),
+                    ],
                   )
-                ]
               )
                 ],
           )

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/asset_inspection_component.dart';
-import 'package:notifier_app/pages/add_inspection_dialog.dart';
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
 import '../components/header.dart';

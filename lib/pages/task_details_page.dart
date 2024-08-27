@@ -24,7 +24,7 @@ class _TaskDetailsPageState extends State<TaskDetailsPage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomAppBar(
-          appBarTitle: 'Renew Fire Extinguisher'
+          appBarTitle: 'Task name'
         )
       ),
       bottomNavigationBar: NavBar(currentPageIndex: 0),

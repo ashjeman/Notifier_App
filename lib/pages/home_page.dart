@@ -59,23 +59,20 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: (){},
-                        child:
-                      TopRightButton(
-                          icon: const Icon(
-                            Icons.logout,
-                            color: Color(0xFF070458),
-                          ),
-                          callback: () => Navigator.pushNamed(context, '/loginpage')
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFC7C0DB),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      ),
-                      const SizedBox(width: 10)
-                    ],
-                  ),
+                      child: const Center(
+                          child: ImageIcon(AssetImage('assets/icons/logout-icon.png'), color: Color(0xFF070458), size: 19)
+                      ), // Center the icon inside the container
+                    ),
+                  )
                 ],
               ),
             ),
@@ -133,20 +130,73 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
-                            child: const RecentActivities(
-                                imageIcon: 'assets/icons/task-check-icon.png',
-                                activityTitle: 'Renew Fire Extinguisher',
-                                activitySite: 'Site 1',
-                                currentProgress: 0.3
-                            ),
-                          ),
-                        ),
-
+                        Expanded(
+                          child: ListView(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            children: [
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                child: const RecentActivities(
+                                    imageIcon: 'assets/icons/task-check-icon.png',
+                                    activityTitle: 'Renew Fire Extinguisher',
+                                    activitySite: 'Site 1',
+                                    currentProgress: 0.3
+                                ),
+                              ),
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                child: const RecentActivities(
+                                    imageIcon: 'assets/icons/task-check-icon.png',
+                                    activityTitle: 'Renew Fire Extinguisher',
+                                    activitySite: 'Site 1',
+                                    currentProgress: 0.3
+                                ),
+                              ),
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                child: const RecentActivities(
+                                    imageIcon: 'assets/icons/task-check-icon.png',
+                                    activityTitle: 'Renew Fire Extinguisher',
+                                    activitySite: 'Site 1',
+                                    currentProgress: 0.3
+                                ),
+                              ),
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                child: const RecentActivities(
+                                    imageIcon: 'assets/icons/task-check-icon.png',
+                                    activityTitle: 'Renew Fire Extinguisher',
+                                    activitySite: 'Site 1',
+                                    currentProgress: 0.3
+                                ),
+                              ),
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                child: const RecentActivities(
+                                    imageIcon: 'assets/icons/task-check-icon.png',
+                                    activityTitle: 'Renew Fire Extinguisher',
+                                    activitySite: 'Site 1',
+                                    currentProgress: 0.3
+                                ),
+                              ),
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                child: const RecentActivities(
+                                    imageIcon: 'assets/icons/task-check-icon.png',
+                                    activityTitle: 'Renew Fire Extinguisher',
+                                    activitySite: 'Site 1',
+                                    currentProgress: 0.3
+                                ),
+                              ),
+                            ],
+                          )
+                        )
                       ],
                     )
                 ),

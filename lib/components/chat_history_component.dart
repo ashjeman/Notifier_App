@@ -80,7 +80,7 @@ class ChatHistoryComponent extends StatelessWidget {
     if (action == 'Users List') {
       //Navigate to Users List
     } else if (action == 'Check List') {
-      Navigator.pushNamed(context, '/taskchecklistpage');
+      Navigator.pushNamed(context, '/progresschecklistpage');
     }
   }
 }

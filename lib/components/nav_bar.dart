@@ -18,7 +18,7 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return NavigationBarTheme(
         data: const NavigationBarThemeData(
-            height: 70,
+            height: 60,
             backgroundColor: Color(0xFF011272),
             labelTextStyle: WidgetStatePropertyAll(TextStyle(color: Colors.white))
         ),
@@ -38,51 +38,23 @@ class _NavBarState extends State<NavBar> {
           },
           destinations: const [
             NavigationDestination(
-              selectedIcon: Icon(
-                Icons.home,
-                color: Color(0xFFF6C601),
-                size: 35,
-              ),
-              icon: Icon(
-                Icons.home_outlined,
-                color: Colors.white,
-              ),
-              label: 'Home Page',
+              selectedIcon: ImageIcon(AssetImage('assets/icons/home-icon.png'), color: Color(0xFFF6C601)),
+              icon: ImageIcon(AssetImage('assets/icons/home-icon.png'), color: Colors.white),
+              label: 'Home',
             ),
             NavigationDestination(
-                selectedIcon: Icon(
-                    Icons.dashboard,
-                    color: Color(0xFFF6C601),
-                    size: 35
-                ),
-                icon: Icon(
-                  Icons.dashboard,
-                  color: Colors.white,
-                ),
+                selectedIcon: ImageIcon(AssetImage('assets/icons/Dashboard.png'), color: Color(0xFFF6C601)),
+                icon: ImageIcon(AssetImage('assets/icons/Dashboard.png'), color: Colors.white),
                 label: 'Dashboard'
             ),
             NavigationDestination(
-                selectedIcon: Icon(
-                    Icons.notifications_active,
-                    color: Color(0xFFF6C601),
-                    size: 35
-                ),
-                icon: Icon(
-                  Icons.notifications_active,
-                  color: Colors.white,
-                ),
+                selectedIcon: ImageIcon(AssetImage('assets/icons/Alarm.png'), color: Color(0xFFF6C601)),
+                icon: ImageIcon(AssetImage('assets/icons/Alarm.png'), color: Colors.white),
                 label: 'Alarm'
             ),
             NavigationDestination(
-                selectedIcon: Icon(
-                    Icons.forum,
-                    color: Color(0xFFF6C601),
-                    size: 35
-                ),
-                icon: Icon(
-                  Icons.forum_rounded,
-                  color: Colors.white,
-                ),
+                selectedIcon: ImageIcon(AssetImage('assets/icons/Chat.png'), color: Color(0xFFF6C601)),
+                icon: ImageIcon(AssetImage('assets/icons/Chat.png'), color: Colors.white),
                 label: 'Chat'
             ),
           ]

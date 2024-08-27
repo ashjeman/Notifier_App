@@ -53,6 +53,7 @@ class _AlarmComponentState extends State<AlarmComponent> {
                   const PopupMenuItem(
                     value: 'Message',
                     child: ListTile(
+                      contentPadding: EdgeInsets.all(1),
                       title: Text('Message'),
                       leading: Icon(Icons.forum),
                     ),
@@ -68,14 +69,14 @@ class _AlarmComponentState extends State<AlarmComponent> {
                     value: 'Close Alarm',
                     child: ListTile(
                       title: Text('Close Alarm'),
-                      leading: Icon(Icons.notifications_off),
+                      leading: ImageIcon(AssetImage('assets/icons/alarm-off-icon.png')),
                     ),
                   ),
                   const PopupMenuItem(
                     value: 'Checklist',
                     child: ListTile(
                       title: Text('Checklist'),
-                      leading: Icon(Icons.checklist),
+                      leading: ImageIcon(AssetImage('assets/icons/checklist-icon.png')),
                     ),
                   )
                 ],

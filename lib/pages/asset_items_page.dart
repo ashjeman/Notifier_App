@@ -34,23 +34,26 @@ class _AssetItemsPageState extends State<AssetItemsPage> {
               fit: BoxFit.cover, // This makes sure the image covers the entire background
             ),
           ),
-          child: const BackgroundContainer(
+          child: BackgroundContainer(
               boxHeight: 800,
               bgChild: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(child: SearchField()),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.add,
-                        size: 28,
-                      ),
+                      const Expanded(child: SearchField()),
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(context, '/assetdetailspage'),
+                        child: const Icon(
+                          Icons.add,
+                          size: 28,
+                        ),
+                      )
                     ],
                   ),
-                  SizedBox(height: 10),
-                  Column(
+                  const SizedBox(height: 10),
+                  const Column(
                     children: [
                       AssetItemsComponent()
                     ],
