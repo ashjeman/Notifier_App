@@ -11,6 +11,7 @@ class CustomAppBar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      
       leading: IconButton(
         icon: const Icon(Icons.arrow_back, color: Colors.white),
         onPressed: () => Navigator.of(context).pop(),

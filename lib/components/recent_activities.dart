@@ -21,12 +21,10 @@ class RecentActivities extends StatefulWidget {
 class _RecentActivitiesState extends State<RecentActivities> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
       margin: const EdgeInsets.only(top: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE9E9E9),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
+      color: const Color(0xFFE9E9E9),
+      elevation: 20,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(

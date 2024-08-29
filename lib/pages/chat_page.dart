@@ -15,7 +15,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset : false,
+      resizeToAvoidBottomInset : true,
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -24,7 +24,7 @@ class _ChatPageState extends State<ChatPage> {
         )
       ),
       bottomNavigationBar: NavBar(currentPageIndex: 0),
-      body: Flexible(
+      body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 70),
           decoration: const BoxDecoration(
@@ -35,7 +35,6 @@ class _ChatPageState extends State<ChatPage> {
           ),
           child: Container(
             margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-            height: 800,
             width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -66,11 +65,11 @@ class _ChatPageState extends State<ChatPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Icon(Icons.people),
+                            const ImageIcon(AssetImage('assets/icons/users-list-icon.png')),
                             const SizedBox(width: 5),
                             GestureDetector(
                               onTap: () => Navigator.pushNamed(context, '/progresschecklistpage'),
-                              child: const Icon(Icons.checklist),
+                              child: const ImageIcon(AssetImage('assets/icons/checklist-icon.png')),
                             )
                           ],
                         )
@@ -78,52 +77,50 @@ class _ChatPageState extends State<ChatPage> {
                     ],
                   ),
                 ),
-                Flexible(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        width: double.infinity,
-                        height: 610,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  suffixIcon: const Icon(Icons.attach_file),
-                                  hintText: 'Your thoughts...',
-                                  contentPadding: const EdgeInsets.only(left: 10),
-                                  //filled: true,
-                                  //fillColor: const Color(0xFF9DAEC3),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    borderSide: const BorderSide(width: 0)
-                                  )
-                                ),
-                              )
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              width: 50,
-                              height: 50,
-                              padding: const EdgeInsets.all(13),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: const Color(0xFFC9D7EB)
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      width: double.infinity,
+                      height: 610,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                suffixIcon: const Icon(Icons.attach_file),
+                                hintText: 'Your thoughts...',
+                                contentPadding: const EdgeInsets.only(left: 10),
+                                //filled: true,
+                                //fillColor: const Color(0xFF9DAEC3),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  borderSide: const BorderSide(width: 0)
+                                )
                               ),
-                              child: Image.asset('assets/icons/send-icon.png'),
+                            )
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            width: 50,
+                            height: 50,
+                            padding: const EdgeInsets.all(13),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: const Color(0xFFC9D7EB)
                             ),
-                          ],
-                        ),
-                      )
-                    ],
-                  )
+                            child: Image.asset('assets/icons/send-icon.png'),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 )
               ],
             )

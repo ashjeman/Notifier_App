@@ -18,7 +18,7 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset : false,
+        resizeToAvoidBottomInset : true,
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
@@ -35,23 +35,25 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
               fit: BoxFit.cover, // This makes sure the image covers the entire background
             ),
           ),
-          child: const BackgroundContainer(
+          child: BackgroundContainer(
               boxHeight: 800,
               bgChild: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ContainerHeader(headerTitle: 'Location List'),
-                      Icon(
-                        Icons.add,
-                        size: 28,
-                      ),
+                      const ContainerHeader(headerTitle: 'Location List'),
+                      GestureDetector(
+                        onTap: () {
+                          _addLocation(context);
+                        },
+                        child: const Icon(Icons.add, size: 28),
+                      )
                     ],
                   ),
-                  SizedBox(height: 10),
-                  SearchField(),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
+                  const SearchField(),
+                  const SizedBox(height: 10),
                   Column(
                     children: [
                       AssetLocationsComponent(
@@ -67,5 +69,65 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
     );
   }
 
-  int? _sliding = 0;
+  Future _addLocation(BuildContext context){
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(15),
+        height: 250,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ContainerHeader(headerTitle: 'Add asset location'),
+            const SizedBox(height: 10),
+            const Text(
+              'Location name',
+              style: TextStyle(
+                color: Color(0xFF070458),
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'New location name',
+                  contentPadding: const EdgeInsets.all(5),
+                  //filled: true,
+                  //fillColor: const Color(0xFF9DAEC3),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(width: 1)
+                  )
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(onPressed: (){},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF355992),
+                      ),
+                      child: const Text(
+                        'Save',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                        ),
+                      )
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+
+
+    );
+  }
 }

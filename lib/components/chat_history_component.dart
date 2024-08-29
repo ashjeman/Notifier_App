@@ -55,14 +55,14 @@ class ChatHistoryComponent extends StatelessWidget {
                             value: 'Check List',
                             child: ListTile(
                               title: Text('Check List'),
-                              leading: Icon(Icons.checklist),
+                              leading: ImageIcon(AssetImage('assets/icons/checklist-icon.png')),
                             ),
                           ),
                           const PopupMenuItem(
                             value: 'Users List',
                             child: ListTile(
                               title: Text('Users List'),
-                              leading: Icon(Icons.people),
+                              leading: ImageIcon(AssetImage('assets/icons/users-list-icon.png')),
                             ),
                           ),
                         ],

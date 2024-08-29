@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
                 child: Container(
                   width: double.infinity,
-                  height: 276,
+                  height: 300,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200.withOpacity(0.3), // Set color inside decoration
                     borderRadius: BorderRadius.circular(10),
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                     const SizedBox(height: 40),
                     const Text(
-                      'Welcome To Notifier Apps',
+                      'Welcome To Notifier App',
                       style: TextStyle(
                         color: Colors.white
                       ),
@@ -60,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           TextField(
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(vertical: 10),
                               prefixIcon: const Icon(Icons.phone_android),
@@ -75,35 +77,40 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
+                    const Visibility(
+                      visible: true,
+                        child: Text(
+                          'Enter OTP code in 60 seconds',
+                          style: TextStyle(
+                            color: Color(0xFFF3B413),
+                          ),
+                    )
+                    ),
                     const SizedBox(height: 20),
                     GestureDetector(
                       onTap: (){
                         Navigator.pushNamed(context, '/homepage');
                       },
                       child: Container(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
+                        padding: const EdgeInsets.all(5),
                         height: 33,
                         width: 101,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white
                         ),
-                        child: Row(
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset(
-                              'assets/icons/login-icon.png',
-                              width: 14,
-                              height: 14,
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              'Log In',
+                            Text(
+                              'Get OTP',
                               style: TextStyle(
                                 color: Color(0xFF4C3776),
                               ),
                             )
                           ],
-                        ),
+                        )
                       ),
                     )
                     ],
@@ -116,4 +123,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
+
 }

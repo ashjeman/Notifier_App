@@ -16,6 +16,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  String currentSite = 'Servo';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,19 +62,15 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFC7C0DB),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Center(
-                          child: ImageIcon(AssetImage('assets/icons/logout-icon.png'), color: Color(0xFF070458), size: 19)
-                      ), // Center the icon inside the container
-                    ),
+                  Row(
+                    children: [
+                      TopRightButton(icon: const Icon(Icons.settings), callback: () {
+                        _displaySettings(context);
+                      }),
+                      const SizedBox(width: 10),
+                      TopRightButton(icon: const Icon(Icons.logout), callback: () => Navigator.pop(context)),
+                      const SizedBox(width: 10),
+                    ],
                   )
                 ],
               ),
@@ -92,15 +91,15 @@ class _HomePageState extends State<HomePage> {
                         toPage: '/manualalarmpage',
 
                       ),
-                      Categories(
+                      /*Categories(
                         categoryIcon: 'assets/icons/trending-icon.png',
                         categoryName: 'Trending',
                         toPage: '',
-                      ),
+                      ),*/
                       Categories(
                         categoryIcon: 'assets/icons/asset-icon.png',
                         categoryName: 'Asset',
-                        toPage: '/assetitemspage',
+                        toPage: '/assetoptionpage',
                       ),
                       Categories(
                         categoryIcon: 'assets/icons/task-check-icon.png',
@@ -204,6 +203,50 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+  
+  Future _displaySettings(BuildContext context){
+    return showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(15),
+        height: 180,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ContainerHeader(headerTitle: 'Settings'),
+            const SizedBox(height: 10),
+            const Text(
+              'Select site',
+              style: TextStyle(
+                color: Color(0xFF070458),
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+            const SizedBox(height: 10),
+            DropdownButton<String>(
+              value: currentSite,
+              items: const [
+                DropdownMenuItem(
+                  value: 'Servo',
+                  child: Text('Servo'),
+                ),
+              ],
+              onChanged:  (String? newValue) {
+                setState(() {
+                  currentSite = newValue!;
+                });
+              }
+            ),
+          ],
+        ),
+      ),
+
+      
     );
   }
 }

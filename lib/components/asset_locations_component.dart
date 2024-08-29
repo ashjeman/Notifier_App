@@ -3,16 +3,21 @@ import 'package:notifier_app/components/edit_location.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
-class AssetLocationsComponent extends StatelessWidget {
-  final String locationName;
+class AssetLocationsComponent extends StatefulWidget {
+  String locationName;
   final String noOfAssets;
 
-  const AssetLocationsComponent({
+  AssetLocationsComponent({
     super.key,
     required this.locationName,
     required this.noOfAssets,
   });
 
+  @override
+  State<AssetLocationsComponent> createState() => _AssetLocationsComponentState();
+}
+
+class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +33,7 @@ class AssetLocationsComponent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextBoldGrey(boldText: locationName),
+              TextBoldGrey(boldText: widget.locationName),
               PopupMenuButton<String>(
                 onSelected: (String action) => selectAction(action, context), // Corrected closure
                 iconColor: const Color(0xFF747474),
@@ -51,7 +56,7 @@ class AssetLocationsComponent extends StatelessWidget {
               ),
             ],
           ),
-          TextGrey(textDetails: noOfAssets),
+          TextGrey(textDetails: widget.noOfAssets),
           const SizedBox(height: 15),
           const Row(
             children: [

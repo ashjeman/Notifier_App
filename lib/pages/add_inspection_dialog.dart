@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/save_button.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
-import 'package:notifier_app/pages/asset_inspection_page.dart';
 
 class AddInspectionDialog extends StatefulWidget {
   const AddInspectionDialog({super.key});
@@ -255,9 +254,5 @@ class _AddInspectionDialogState extends State<AddInspectionDialog> {
       ),
     );
   }
-  void toggleAssetForm(){
-    setState(() {
-      visible = !visible;
-    });
-  }
+
 }

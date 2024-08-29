@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_pie_chart/easy_pie_chart.dart';
+import 'package:notifier_app/components/task_details_button.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 import 'package:notifier_app/components/traffic_indicator.dart';
@@ -29,6 +31,7 @@ class TaskDetails extends StatefulWidget {
 
 class _TaskDetailsState extends State<TaskDetails> {
   String currentStatus = 'Open';
+  int? _sliding = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +130,28 @@ class _TaskDetailsState extends State<TaskDetails> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  CupertinoSlidingSegmentedControl(
+                    children: const {
+                      0: Text('User list'),
+                      1: Text('Playback'),
+                    },
+                    groupValue: _sliding,
+                    onValueChanged: (int? newValue) {
+                      setState(() {
+                        _sliding = newValue;
+                      });
+                    },
+                    backgroundColor: const Color(0xFFD9D9D9),
+                    thumbColor: const Color(0xFFADA1F8),
+                  ),
+                  TaskDetailsButton(icon: 'assets/icons/chatting-icon.png', callback: () => Navigator.pushNamed(context, '/chatpage')),
+                  TaskDetailsButton(icon: 'assets/icons/checklist-icon.png', callback: () => Navigator.pushNamed(context, '/taskchecklistpage')),
+                ],
               ),
+              const SizedBox(height: 20),
               Table(
                 border: TableBorder.all(
                     color: Colors.black

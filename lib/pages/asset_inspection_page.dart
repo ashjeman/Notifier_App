@@ -95,10 +95,37 @@ class _AssetInspectionPageState extends State<AssetInspectionPage> {
 
   int? _sliding = 0;
 
-  void toggleAssetForm(){
-    setState(() {
-      visible = !visible;
-    });
+  Future _displaySettings(BuildContext context){
+    return showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(15),
+        height: 180,
+        width: MediaQuery.of(context).size.width,
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ContainerHeader(headerTitle: 'Scan QR code'),
+            SizedBox(height: 10),
+            Text(
+              'Select site',
+              style: TextStyle(
+                color: Color(0xFF070458),
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      ),
+
+
+    );
   }
+
+
+
 }
-bool visible = false;
+

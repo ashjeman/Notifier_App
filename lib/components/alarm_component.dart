@@ -17,8 +17,8 @@ class _AlarmComponentState extends State<AlarmComponent> {
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
-          color: const Color(0xFFE9E9E9),
-          borderRadius: BorderRadius.circular(10.0)
+        color: const Color(0xFFE9E9E9),
+        borderRadius: BorderRadius.circular(10.0)
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
