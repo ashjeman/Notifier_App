@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                         _displaySettings(context);
                       }),
                       const SizedBox(width: 10),
-                      TopRightButton(icon: const Icon(Icons.logout), callback: () => Navigator.pop(context)),
+                      TopRightButton(icon: const Icon(Icons.logout), callback: () => Navigator.of(context).popUntil((route) => route.isFirst)),
                       const SizedBox(width: 10),
                     ],
                   )

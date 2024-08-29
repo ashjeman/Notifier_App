@@ -34,9 +34,9 @@ class AssetOptionPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const ContainerHeader(headerTitle: 'Asset option'),
-              OptionsComponent(assetOption: 'Assets', optionImage: 'assets/icons/asset-list-icon.png', nextPage: '/assetitemspage'),
+              OptionsComponent(assetOption: 'Assets location', optionImage: 'assets/icons/asset-list-icon.png', nextPage: '/assetlocationpage'),
               OptionsComponent(assetOption: 'Inspections', optionImage: 'assets/icons/asset-inspection-icon.png', nextPage: '/assetinspectionpage'),
-              OptionsComponent(assetOption: 'Expiring assets', optionImage: 'assets/icons/asset-expiring-icon.png', nextPage: '')
+              OptionsComponent(assetOption: 'Expiring assets', optionImage: 'assets/icons/asset-expiring-icon.png', nextPage: '/assetitemspage')
 
             ],
           )

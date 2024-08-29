@@ -38,34 +38,33 @@ class _AssetDetailsPageState extends State<AssetDetailsPage> {
               ),
             ),
             child: BackgroundContainer(
-                boxHeight: 900,
-                bgChild: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          height: 200,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                              color: const Color(0xFFB2BED0),
-                              borderRadius: BorderRadius.circular(10)
-                          ),
+              boxHeight: 900,
+              bgChild: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: 200,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFB2BED0),
+                            borderRadius: BorderRadius.circular(10)
                         ),
-                        Positioned(
-                          right: 10,
-                          bottom: 10,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color(0xFFC9D7EB),
-                              borderRadius: BorderRadius.circular(30)
-                            ),
-                            height: 40,
-                            width: 40,
-                            
-                            child: const Icon(Icons.add),)
-                        )
-                      ],
-                    ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        bottom: 10,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xFFC9D7EB),
+                            borderRadius: BorderRadius.circular(30)
+                          ),
+                          height: 40,
+                          width: 40,
+                          child: const Icon(Icons.add),)
+                      )
+                    ],
+                  ),
                     Container(
                         padding: const EdgeInsets.all(20),
                         child: Column(

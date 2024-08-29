@@ -41,7 +41,7 @@ class NotifierApp extends StatelessWidget {
         '/progresschecklistpage': (context) => const ProgressChecklistPage(),
         '/dashboardpage': (context) => const DashboardPage(),
         '/taskchecklistpage': (context) => const TaskCheckListPage(),
-        '/assetlocationspage': (context) => const AssetLocationsPage(),
+        '/assetlocationpage': (context) => const AssetLocationsPage(),
         '/assetitemspage': (context) => const AssetItemsPage(),
         '/edithistorypage': (context) => const EditHistoryPage(),
         '/assetdetailspage': (context) => AssetDetailsPage(),

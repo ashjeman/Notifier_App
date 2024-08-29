@@ -43,16 +43,32 @@ class _TaskAssignmentPageState extends State<TaskAssignmentPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                Container(
-                  height: 200,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFB2BED0),
-                      borderRadius: BorderRadius.circular(10)
-                  ),
+                Stack(
+                  children: [
+                    Container(
+                      height: 200,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFB2BED0),
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                    ),
+                    Positioned(
+                        right: 10,
+                        bottom: 10,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xFFC9D7EB),
+                              borderRadius: BorderRadius.circular(30)
+                          ),
+                          height: 40,
+                          width: 40,
+                          child: const Icon(Icons.add),)
+                    )
+                  ],
                 ),
-                const SizedBox(height: 20)
-                ,                  Row(
+                const SizedBox(height: 20),
+                Row(
                   children: [
                     Row(
                       children: [
