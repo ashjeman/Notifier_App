@@ -240,9 +240,12 @@ class _AddInspectionDialogState extends State<AddInspectionDialog> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SaveButton(
-                        buttonIcon: 'assets/icons/save-icon.png',
-                        buttonText: 'Save'
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: SaveButton(
+                            buttonIcon: 'assets/icons/save-icon.png',
+                            buttonText: 'Save'
+                        ),
                       )
                     ],
                   )

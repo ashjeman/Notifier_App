@@ -114,7 +114,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                               ),
                               Row(
                                 children: [
-                                  ManualAlarmField(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Alarm group'),
+                                  PopupMenuLabel(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Alarm group'),
                                   Expanded(
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
@@ -148,7 +148,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                               ),
                               Row(
                                 children: [
-                                  ManualAlarmField(fieldIconPath: 'assets/icons/severity-icon.png', fieldName: 'Severity level'),
+                                  PopupMenuLabel(fieldIconPath: 'assets/icons/severity-icon.png', fieldName: 'Severity level'),
                                   Expanded(
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
@@ -182,7 +182,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                               ),
                               Row(
                                 children: [
-                                  ManualAlarmField(fieldIconPath: 'assets/icons/category-icon.png', fieldName: 'Category'),
+                                  PopupMenuLabel(fieldIconPath: 'assets/icons/category-icon.png', fieldName: 'Category'),
                                   Expanded(
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
@@ -216,7 +216,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                               ),
                               Column(
                                 children: [
-                                  ManualAlarmField(fieldIconPath: 'assets/icons/chatting-icon.png', fieldName: 'Description'),
+                                  PopupMenuLabel(fieldIconPath: 'assets/icons/chatting-icon.png', fieldName: 'Description'),
                                   TextField(
                                     maxLines: 5,
                                     decoration: InputDecoration(
@@ -236,7 +236,10 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit')
+                                  GestureDetector(
+                                    onTap: () => Navigator.pop(context),
+                                    child: SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit'),
+                                  )
                                 ],
                               )
                             ]),

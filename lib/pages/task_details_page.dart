@@ -39,12 +39,12 @@ class _TaskDetailsPageState extends State<TaskDetailsPage> {
         child: BackgroundContainer(
             boxHeight: 800,
             bgChild: TaskDetails(
-                alarmTitle: 'Renew Fire Extinguisher',
-                alarmGroup: 'CCTV',
-                alarmBeginDate: '20/6/2024',
-                alarmDueDate: '20/6/2024',
-                alarmAssignedTo: 'Edmund',
-                alarmAssignedBy: 'Yoasobi')
+                taskTitle: 'Renew Fire Extinguisher',
+                taskGroup: 'CCTV',
+                taskBeginDate: '20/6/2024',
+                taskDueDate: '20/6/2024',
+                taskAssignedTo: 'Edmund',
+                taskAssignedBy: 'Yoasobi')
         )
       ),
       

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/task_check_component.dart';
+import 'package:notifier_app/components/task_component.dart';
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';
 import '../components/header.dart';
@@ -75,13 +76,24 @@ class _TaskCheckListPageState extends State<TaskCheckListPage> {
                 thumbColor: const Color(0xFFADA1F8),
               ),
               const SizedBox(height: 10),
-              const Column(
+              Column(
                 children: [
-                  TaskCheckComponent(
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                    child: TaskComponent(
+                        callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                        imageIcon: 'assets/icons/task-check-icon.png',
+                        activityTitle: 'Renew Fire Extinguisher',
+                        activitySite: 'Site 1',
+                        currentProgress: 0.3
+                    ),
+                  ),
+                  /*TaskCheckComponent(
                       taskTitle: 'Meet with client',
                       taskCategory: 'CCTV',
                       taskDate: '30/4/2024',
-                  )
+                  )*/
                 ],
               )
             ],

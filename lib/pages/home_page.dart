@@ -4,7 +4,7 @@ import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/categories.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/nav_bar.dart';
-import 'package:notifier_app/components/recent_activities.dart';
+import 'package:notifier_app/components/task_component.dart';
 import 'package:notifier_app/components/top_right_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -133,65 +133,47 @@ class _HomePageState extends State<HomePage> {
                           child: ListView(
                             padding: const EdgeInsets.only(top: 0.0),
                             children: [
-                              GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
-                                child: const RecentActivities(
-                                    imageIcon: 'assets/icons/task-check-icon.png',
-                                    activityTitle: 'Renew Fire Extinguisher',
-                                    activitySite: 'Site 1',
-                                    currentProgress: 0.3
-                                ),
+                              TaskComponent(
+                                  callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                  imageIcon: 'assets/icons/task-check-icon.png',
+                                  activityTitle: 'Renew Fire Extinguisher',
+                                  activitySite: 'Site 1',
+                                  currentProgress: 0.3
                               ),
-                              GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
-                                child: const RecentActivities(
-                                    imageIcon: 'assets/icons/task-check-icon.png',
-                                    activityTitle: 'Renew Fire Extinguisher',
-                                    activitySite: 'Site 1',
-                                    currentProgress: 0.3
-                                ),
+                              TaskComponent(
+                                  callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                  imageIcon: 'assets/icons/task-check-icon.png',
+                                  activityTitle: 'Renew Fire Extinguisher',
+                                  activitySite: 'Site 1',
+                                  currentProgress: 0.3
                               ),
-                              GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
-                                child: const RecentActivities(
-                                    imageIcon: 'assets/icons/task-check-icon.png',
-                                    activityTitle: 'Renew Fire Extinguisher',
-                                    activitySite: 'Site 1',
-                                    currentProgress: 0.3
-                                ),
+                              TaskComponent(
+                                  callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                  imageIcon: 'assets/icons/task-check-icon.png',
+                                  activityTitle: 'Renew Fire Extinguisher',
+                                  activitySite: 'Site 1',
+                                  currentProgress: 0.3
                               ),
-                              GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
-                                child: const RecentActivities(
-                                    imageIcon: 'assets/icons/task-check-icon.png',
-                                    activityTitle: 'Renew Fire Extinguisher',
-                                    activitySite: 'Site 1',
-                                    currentProgress: 0.3
-                                ),
+                              TaskComponent(
+                                  callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                  imageIcon: 'assets/icons/task-check-icon.png',
+                                  activityTitle: 'Renew Fire Extinguisher',
+                                  activitySite: 'Site 1',
+                                  currentProgress: 0.3
                               ),
-                              GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
-                                child: const RecentActivities(
-                                    imageIcon: 'assets/icons/task-check-icon.png',
-                                    activityTitle: 'Renew Fire Extinguisher',
-                                    activitySite: 'Site 1',
-                                    currentProgress: 0.3
-                                ),
+                              TaskComponent(
+                                  callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                  imageIcon: 'assets/icons/task-check-icon.png',
+                                  activityTitle: 'Renew Fire Extinguisher',
+                                  activitySite: 'Site 1',
+                                  currentProgress: 0.3
                               ),
-                              GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () => Navigator.pushNamed(context, '/taskdetailspage'),
-                                child: const RecentActivities(
-                                    imageIcon: 'assets/icons/task-check-icon.png',
-                                    activityTitle: 'Renew Fire Extinguisher',
-                                    activitySite: 'Site 1',
-                                    currentProgress: 0.3
-                                ),
+                              TaskComponent(
+                                  callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
+                                  imageIcon: 'assets/icons/task-check-icon.png',
+                                  activityTitle: 'Renew Fire Extinguisher',
+                                  activitySite: 'Site 1',
+                                  currentProgress: 0.3
                               ),
                             ],
                           )

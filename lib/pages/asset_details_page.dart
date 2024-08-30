@@ -103,9 +103,12 @@ class _AssetDetailsPageState extends State<AssetDetailsPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SaveButton(
-                                    buttonText: 'Save',
-                                    buttonIcon: 'assets/icons/save-icon.png'
+                                GestureDetector(
+                                  onTap: () => Navigator.pop(context),
+                                  child: SaveButton(
+                                      buttonText: 'Save',
+                                      buttonIcon: 'assets/icons/save-icon.png'
+                                  ),
                                 )
                               ],
                             )

@@ -3,6 +3,8 @@ import 'package:notifier_app/components/edit_location.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
+import 'header.dart';
+
 class AssetLocationsComponent extends StatefulWidget {
   String locationName;
   final String noOfAssets;
@@ -83,12 +85,62 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
 
   void selectAction(String action, BuildContext context) {
     if (action == 'Edit') {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) => const EditLocation(),
-      );
+      _editLocation(context);
     } else if (action == 'Delete') {
       // Navigate to User List
     }
+  }
+
+  Future _editLocation(BuildContext context){
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(15),
+        height: 250,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ContainerHeader(headerTitle: 'Edit location name'),
+            const SizedBox(height: 10),
+            const Text(
+              'Location name',
+              style: TextStyle(
+                color: Color(0xFF070458),
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const TextField(
+              decoration: InputDecoration(
+                  hintText: "New name..."
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(onPressed: (){},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF355992),
+                      ),
+                      child: const Text(
+                        'Save',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                        ),
+                      )
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

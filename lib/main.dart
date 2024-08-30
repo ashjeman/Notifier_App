@@ -12,6 +12,8 @@ import 'package:notifier_app/pages/asset_details_page.dart';
 import 'package:notifier_app/pages/edit_history_page.dart';
 import 'package:notifier_app/pages/home_page.dart';
 import 'package:notifier_app/pages/login_page.dart';
+import 'package:notifier_app/pages/messages_option_page.dart';
+import 'package:notifier_app/pages/scanned_items_page.dart';
 import 'package:notifier_app/pages/task_details_page.dart';
 import 'package:notifier_app/pages/manual_alarm_page.dart';
 import 'package:notifier_app/pages/progress_checklist_page.dart';
@@ -51,7 +53,9 @@ class NotifierApp extends StatelessWidget {
         '/chatpage': (context) => const ChatPage(),
         '/manualalarmpage': (context) => const ManualAlarmPage(),
         '/taskassignmentpage': (context) => const TaskAssignmentPage(),
-        '/assetoptionpage': (context) => const AssetOptionPage()
+        '/assetoptionpage': (context) => const AssetOptionPage(),
+        '/scanneditemspage': (context) => const ScannedItemsPage(),
+        '/messageoptionpage': (context) => const MessageOptionPage()
       },
     );
   }

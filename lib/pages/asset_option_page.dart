@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/header.dart';
-import 'package:notifier_app/components/asset_options_component.dart';
+import 'package:notifier_app/components/options_component.dart';
 import '../components/custom_app_bar.dart';
 import '../components/nav_bar.dart';
 
@@ -34,10 +34,9 @@ class AssetOptionPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const ContainerHeader(headerTitle: 'Asset option'),
-              OptionsComponent(assetOption: 'Assets location', optionImage: 'assets/icons/asset-list-icon.png', nextPage: '/assetlocationpage'),
-              OptionsComponent(assetOption: 'Inspections', optionImage: 'assets/icons/asset-inspection-icon.png', nextPage: '/assetinspectionpage'),
-              OptionsComponent(assetOption: 'Expiring assets', optionImage: 'assets/icons/asset-expiring-icon.png', nextPage: '/assetitemspage')
-
+              OptionsComponent(option: 'Assets location', optionImage: 'assets/icons/asset-list-icon.png', nextPage: '/assetlocationpage'),
+              OptionsComponent(option: 'Inspections', optionImage: 'assets/icons/asset-inspection-icon.png', nextPage: '/assetinspectionpage'),
+              OptionsComponent(option: 'Expiring assets', optionImage: 'assets/icons/asset-expiring-icon.png', nextPage: '/assetitemspage')
             ],
           )
         ),

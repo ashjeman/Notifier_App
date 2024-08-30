@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ManualAlarmField extends StatefulWidget {
+class PopupMenuLabel extends StatefulWidget {
   String fieldIconPath;
   String fieldName;
 
-  ManualAlarmField({
+  PopupMenuLabel({
     super.key,
     required this.fieldIconPath,
     required this.fieldName
   });
 
   @override
-  State<ManualAlarmField> createState() => _ManualAlarmFieldState();
+  State<PopupMenuLabel> createState() => _PopupMenuLabelState();
 }
 
-class _ManualAlarmFieldState extends State<ManualAlarmField> {
+class _PopupMenuLabelState extends State<PopupMenuLabel> {
   @override
   Widget build(BuildContext context) {
     return Padding(

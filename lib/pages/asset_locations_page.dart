@@ -108,7 +108,8 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
             Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(onPressed: (){},
+                  child: ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF355992),
                       ),
@@ -126,8 +127,6 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
           ],
         ),
       ),
-
-
     );
   }
 }

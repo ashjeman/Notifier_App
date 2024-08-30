@@ -15,6 +15,8 @@ class TaskAssignmentPage extends StatefulWidget {
 
 class _TaskAssignmentPageState extends State<TaskAssignmentPage> {
   String taskGroup = 'Task 1';
+  String severityLevel = 'Level 1';
+  String alarmGroup = 'Group 1';
   DateTime taskDate = DateTime.now();
 
   @override
@@ -37,175 +39,235 @@ class _TaskAssignmentPageState extends State<TaskAssignmentPage> {
             fit: BoxFit.cover, // This makes sure the image covers the entire background
           ),
         ),
-        child: BackgroundContainer(
-          boxHeight: 800,
-          bgChild: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFFB2BED0),
-                          borderRadius: BorderRadius.circular(10)
-                      ),
-                    ),
-                    Positioned(
-                        right: 10,
-                        bottom: 10,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Color(0xFFC9D7EB),
-                              borderRadius: BorderRadius.circular(30)
-                          ),
-                          height: 40,
-                          width: 40,
-                          child: const Icon(Icons.add),)
-                    )
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Row(
+        child: SingleChildScrollView(
+          child: BackgroundContainer(
+              boxHeight: 800,
+              bgChild: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
                       children: [
-                        const Text(
-                            'Today',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold
-                            )
-                        ),
-                        const SizedBox(width: 20),
-                        GestureDetector(
-                          onTap: () {
-                            showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime(2030)
-                            ).then((selectedDate) {
-                              setState(() {
-                                taskDate = selectedDate!;
-                              });
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                border: Border.all(width: 1),
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Row(
-                              children: [
-                                Text('${taskDate.day}/${taskDate.month}/${taskDate.year}', style: const TextStyle(fontWeight: FontWeight.bold),),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    ManualAlarmField(fieldIconPath: 'assets/icons/team-icon.png', fieldName: 'Task group'),
-                    Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        Stack(
                           children: [
-                            DropdownButton<String>(
-                                value: 'Task 1',
-                                items: const [
-                                  DropdownMenuItem(
-                                    value: 'Task 1',
-                                    child: Text('Task 1'),
+                            Container(
+                              height: 200,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFB2BED0),
+                                  borderRadius: BorderRadius.circular(10)
+                              ),
+                            ),
+                            Positioned(
+                                right: 10,
+                                bottom: 10,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Color(0xFFC9D7EB),
+                                      borderRadius: BorderRadius.circular(30)
                                   ),
-                                  DropdownMenuItem(
-                                    value: 'Task 2',
-                                    child: Text('Task 2'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 'Task 3',
-                                    child: Text('Task 3'),
-                                  ),
-                                ],
-                                onChanged:  (String? newValue) {
+                                  height: 40,
+                                  width: 40,
+                                  child: const Icon(Icons.add),)
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/team-icon.png', fieldName: 'Task group'),
+                            Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    DropdownButton<String>(
+                                        value: 'Task 1',
+                                        items: const [
+                                          DropdownMenuItem(
+                                            value: 'Task 1',
+                                            child: Text('Task 1'),
+                                          ),
+                                          DropdownMenuItem(
+                                            value: 'Task 2',
+                                            child: Text('Task 2'),
+                                          ),
+                                          DropdownMenuItem(
+                                            value: 'Task 3',
+                                            child: Text('Task 3'),
+                                          ),
+                                        ],
+                                        onChanged:  (String? newValue) {
+                                          setState(() {
+                                            taskGroup = newValue!;
+                                          });
+                                        }
+                                    )
+                                  ],
+                                )
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/severity-icon.png', fieldName: 'Severity level'),
+                            Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    DropdownButton<String>(
+                                        value: 'Severity 1',
+                                        items: const [
+                                          DropdownMenuItem(
+                                            value: 'Severity 1',
+                                            child: Text('Severity 1'),
+                                          ),
+                                          DropdownMenuItem(
+                                            value: 'Severity 2',
+                                            child: Text('Severity 2'),
+                                          ),
+                                        ],
+                                        onChanged:  (String? newValue) {
+                                          setState(() {
+                                            taskGroup = newValue!;
+                                          });
+                                        }
+                                    )
+                                  ],
+                                )
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/category-icon.png', fieldName: 'Category'),
+                            Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    DropdownButton<String>(
+                                        value: 'Category 1',
+                                        items: const [
+                                          DropdownMenuItem(
+                                            value: 'Category 1',
+                                            child: Text('Category 1'),
+                                          ),
+                                          DropdownMenuItem(
+                                            value: 'Category 2',
+                                            child: Text('Category 2'),
+                                          ),
+                                          DropdownMenuItem(
+                                            value: 'Category 2',
+                                            child: Text('Category 2'),
+                                          ),
+                                        ],
+                                        onChanged:  (String? newValue) {
+                                          setState(() {
+                                            alarmGroup = newValue!;
+                                          });
+                                        }
+                                    )
+                                  ],
+                                )
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/schedule-icon.png', fieldName: 'Begin date'),
+                            const SizedBox(width: 20),
+                            GestureDetector(
+                              onTap: () {
+                                showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2030)
+                                ).then((selectedDate) {
                                   setState(() {
-                                    taskGroup = newValue!;
+                                    taskDate = selectedDate!;
                                   });
-                                }
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    border: Border.all(width: 1),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text('${taskDate.day}/${taskDate.month}/${taskDate.year}', style: const TextStyle(fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/schedule-icon.png', fieldName: 'Due date'),
+                            const SizedBox(width: 20),
+                            GestureDetector(
+                              onTap: () {
+                                showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2030)
+                                ).then((selectedDate) {
+                                  setState(() {
+                                    taskDate = selectedDate!;
+                                  });
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    border: Border.all(width: 1),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text('${taskDate.day}/${taskDate.month}/${taskDate.year}', style: const TextStyle(fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/chatting-icon.png', fieldName: 'Description'),
+                            TextField(
+                              maxLines: 5,
+                              decoration: InputDecoration(
+                                  hintText: 'Write a description...',
+                                  contentPadding: const EdgeInsets.all(5),
+                                  //filled: true,
+                                  //fillColor: const Color(0xFF9DAEC3),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      borderSide: const BorderSide(width: 0)
+                                  )
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit'),
                             )
                           ],
                         )
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    ManualAlarmField(fieldIconPath: 'assets/icons/severity-icon.png', fieldName: 'Severity level'),
-                    Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            DropdownButton<String>(
-                                value: 'Severity 1',
-                                items: const [
-                                  DropdownMenuItem(
-                                    value: 'Severity 1',
-                                    child: Text('Severity 1'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 'Severity 2',
-                                    child: Text('Severity 2'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 'Severity 2',
-                                    child: Text('Severity 2'),
-                                  ),
-                                ],
-                                onChanged:  (String? newValue) {
-                                  setState(() {
-                                    taskGroup = newValue!;
-                                  });
-                                }
-                            )
-                          ],
-                        )
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    ManualAlarmField(fieldIconPath: 'assets/icons/chatting-icon.png', fieldName: 'Description'),
-                    TextField(
-                      maxLines: 5,
-                      decoration: InputDecoration(
-                          hintText: 'Write a description...',
-                          contentPadding: const EdgeInsets.all(5),
-                          //filled: true,
-                          //fillColor: const Color(0xFF9DAEC3),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(width: 0)
-                          )
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit')
-                  ],
-                )
 
 
-              ])
-          )
+                      ])
+              )
+          ),
         )
       )
     );

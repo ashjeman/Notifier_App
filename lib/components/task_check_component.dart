@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 import 'package:notifier_app/components/traffic_indicator.dart';
+import 'package:notifier_app/pages/progress_checklist_page.dart';
 
 class TaskCheckComponent extends StatelessWidget {
   final String taskTitle;
@@ -21,8 +22,8 @@ class TaskCheckComponent extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
-          color: const Color(0xFFE9E9E9),
-          borderRadius: BorderRadius.circular(10.0)
+        color: const Color(0xFFE9E9E9),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,11 +49,11 @@ class TaskCheckComponent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextGrey(textDetails: taskCategory),
-                  TextGrey(textDetails: taskDate)
+                  TextGrey(textDetails: taskDate),
                 ],
               ),
               PopupMenuButton(
-                onSelected: selectAction,
+                onSelected: (action) => selectAction(context, action),
                 iconColor: const Color(0xFF747474),
                 itemBuilder: (context) => [
                   const PopupMenuItem(
@@ -86,11 +87,13 @@ class TaskCheckComponent extends StatelessWidget {
     );
   }
 
-  void selectAction(String action){
+  // Modify selectAction to accept context
+  void selectAction(BuildContext context, String action) {
     if (action == 'Check List') {
-      // Navigate to Check List
+      // Navigate to Check List page
+      Navigator.pushNamed(context, '/progresschecklistpage');
     } else if (action == 'User List') {
-      // Navigate to User List
+      // Navigate to User List page (implement as needed)
     }
   }
 }
