@@ -61,7 +61,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                                       bottom: 10,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            color: Color(0xFFC9D7EB),
+                                            color: const Color(0xFFC9D7EB),
                                             borderRadius: BorderRadius.circular(30)
                                         ),
                                         height: 40,

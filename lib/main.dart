@@ -33,11 +33,11 @@ class NotifierApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Notifier App',
-      home: LoginPage(),
+      home: const LoginPage(),
       theme: ThemeData(fontFamily: 'Inter'),
       routes: {
         '/homepage': (context) => const HomePage(),
-        '/loginpage': (context) => LoginPage(),
+        '/loginpage': (context) => const LoginPage(),
         '/taskdetailspage': (context) => TaskDetailsPage(),
         '/alarmlistpage': (context) => const AlarmListPage(),
         '/progresschecklistpage': (context) => const ProgressChecklistPage(),
@@ -46,7 +46,7 @@ class NotifierApp extends StatelessWidget {
         '/assetlocationpage': (context) => const AssetLocationsPage(),
         '/assetitemspage': (context) => const AssetItemsPage(),
         '/edithistorypage': (context) => const EditHistoryPage(),
-        '/assetdetailspage': (context) => AssetDetailsPage(),
+        '/assetdetailspage': (context) => const AssetDetailsPage(),
         '/assetinspectionpage': (context) => const AssetInspectionPage(),
         '/addinspectiondialog': (context) => const AddInspectionDialog(),
         '/chathistorypage': (context) => const ChatHistoryPage(),

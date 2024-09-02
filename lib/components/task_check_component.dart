@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 import 'package:notifier_app/components/traffic_indicator.dart';
-import 'package:notifier_app/pages/progress_checklist_page.dart';
 
 class TaskCheckComponent extends StatelessWidget {
   final String taskTitle;

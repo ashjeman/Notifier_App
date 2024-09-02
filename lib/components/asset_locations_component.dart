@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/edit_location.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 

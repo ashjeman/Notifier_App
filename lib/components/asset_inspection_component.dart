@@ -31,13 +31,13 @@ class _AssetInspectionComponentState extends State<AssetInspectionComponent> {
   confirmFinishInspection(BuildContext context) {
 
     Widget cancelButton = TextButton(
-      child: Text("No"),
+      child: const Text("No"),
       onPressed:  () {
         Navigator.pop(context);
       },
     );
     Widget continueButton = TextButton(
-      child: Text("Yes"),
+      child: const Text("Yes"),
       onPressed:  () {
         Navigator.pop(context);
       },
@@ -45,8 +45,8 @@ class _AssetInspectionComponentState extends State<AssetInspectionComponent> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Inspection Alert"),
-      content: Text("Are you sure you want to finish this inspection?"),
+      title: const Text("Inspection Alert"),
+      content: const Text("Are you sure you want to finish this inspection?"),
       actions: [
         cancelButton,
         continueButton,

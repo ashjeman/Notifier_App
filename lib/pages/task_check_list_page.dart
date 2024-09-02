@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/task_check_component.dart';
 import 'package:notifier_app/components/task_component.dart';
 import '../components/background_container.dart';
 import '../components/custom_app_bar.dart';

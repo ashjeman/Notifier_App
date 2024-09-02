@@ -50,7 +50,7 @@ class _ChatHistoryPageState extends State<ChatHistoryPage> {
                         onTap: () {
                           _displayAddChat(context);
                         },
-                        child: Icon(Icons.add, size: 30,),
+                        child: const Icon(Icons.add, size: 30,),
                       )
                     ],
                   ),
@@ -178,7 +178,7 @@ class _ChatHistoryPageState extends State<ChatHistoryPage> {
                       )
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(

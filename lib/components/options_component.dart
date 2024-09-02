@@ -28,7 +28,7 @@ class OptionsComponent extends StatelessWidget {
               children: [
                 Image.asset(optionImage, width: 50, height: 50,),
                 const SizedBox(width: 15),
-                Text(option, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF616260))),
+                Text(option, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF616260))),
               ],
             ),
             const ImageIcon(AssetImage('assets/icons/next-icon.png'), color: Color(0xFF183C70),)

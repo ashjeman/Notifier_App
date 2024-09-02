@@ -7,7 +7,7 @@ import '../components/custom_app_bar.dart';
 import '../components/nav_bar.dart';
 
 class AssetDetailsPage extends StatefulWidget {
-  AssetDetailsPage({super.key});
+  const AssetDetailsPage({super.key});
 
 
   @override
@@ -56,7 +56,7 @@ class _AssetDetailsPageState extends State<AssetDetailsPage> {
                         bottom: 10,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color(0xFFC9D7EB),
+                            color: const Color(0xFFC9D7EB),
                             borderRadius: BorderRadius.circular(30)
                           ),
                           height: 40,
@@ -77,7 +77,7 @@ class _AssetDetailsPageState extends State<AssetDetailsPage> {
                             EditForm(formName: 'QR Code', textFieldHint: 'Scan QR'),
                             const Text(
                                 'Current status',
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: Color(0xFF2B5EA8),
                                     fontWeight: FontWeight.bold)
                             ),

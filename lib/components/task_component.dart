@@ -7,7 +7,7 @@ class TaskComponent extends StatefulWidget {
   final double currentProgress;
   final VoidCallback callback;
 
-  TaskComponent({
+  const TaskComponent({
     super.key,
     required this.imageIcon,
     required this.activityTitle,
