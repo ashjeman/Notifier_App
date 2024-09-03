@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/task_component.dart';
-import '../components/background_container.dart';
-import '../components/custom_app_bar.dart';
-import '../components/header.dart';
-import '../components/nav_bar.dart';
-import '../components/search_field.dart';
+import 'package:notifier_app/components/tasks_components/task_component.dart';
+import '../../components/background_container.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/header.dart';
+import '../../components/nav_bar.dart';
+import '../../components/search_field.dart';
 
 class TaskCheckListPage extends StatefulWidget {
   const TaskCheckListPage({super.key});

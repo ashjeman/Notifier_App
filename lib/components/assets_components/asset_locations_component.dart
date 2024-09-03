@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
-import 'header.dart';
+import '../header.dart';
 
 class AssetLocationsComponent extends StatefulWidget {
   String locationName;

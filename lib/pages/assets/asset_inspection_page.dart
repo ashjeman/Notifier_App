@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/asset_inspection_component.dart';
-import '../components/background_container.dart';
-import '../components/custom_app_bar.dart';
-import '../components/header.dart';
-import '../components/nav_bar.dart';
-import '../components/search_field.dart';
+import 'package:notifier_app/components/assets_components/asset_inspection_component.dart';
+import '../../components/background_container.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/header.dart';
+import '../../components/nav_bar.dart';
+import '../../components/search_field.dart';
+import 'package:http/http.dart' as http;
+
+import '../../models/inspectionBySiteId.dart';
+
 
 class AssetInspectionPage extends StatefulWidget {
 
@@ -18,6 +24,7 @@ class AssetInspectionPage extends StatefulWidget {
 }
 
 class _AssetInspectionPageState extends State<AssetInspectionPage> {
+
   DateTime inspectionDate = DateTime.now();
   TimeOfDay inspectionTime = TimeOfDay.now();
 
@@ -77,13 +84,13 @@ class _AssetInspectionPageState extends State<AssetInspectionPage> {
                 ),
                 const SizedBox(height: 10),
                 AssetInspectionComponent(
-                    assetEquipment: 'Equipment name',
+                    assetEquipment: 'Fire Ext',
                     inspectionDate: '8/1/2024',
                     inspectionDueDate: '8/1/2024',
                     inspectedBy: 'Faisal',
                     assignedTo: 'Ahmad',
                     noOfItems: '1'
-                ),
+                )
               ],
             ),
 

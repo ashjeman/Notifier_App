@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/task_details.dart';
+import 'package:notifier_app/components/tasks_components/task_details.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/custom_app_bar.dart';
 
-import '../components/nav_bar.dart';
+import '../../components/nav_bar.dart';
 
 class TaskDetailsPage extends StatefulWidget {
   String currentProgress = 'Pending';

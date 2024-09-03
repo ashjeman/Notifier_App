@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/background_container.dart';
-import 'package:notifier_app/components/manual_alarm_field.dart';
+import 'package:notifier_app/components/alarm_components/manual_alarm_field.dart';
 import 'package:notifier_app/components/save_button.dart';
 
-import '../components/custom_app_bar.dart';
-import '../components/nav_bar.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/nav_bar.dart';
 
 class ManualAlarmPage extends StatefulWidget {
   const ManualAlarmPage({super.key});

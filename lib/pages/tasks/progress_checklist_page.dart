@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/save_button.dart';
 import 'package:notifier_app/components/text_grey.dart';
-import '../components/custom_app_bar.dart';
-import '../components/nav_bar.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/nav_bar.dart';
 import 'package:notifier_app/components/header.dart';
 
-import '../components/text_bold_grey.dart';
+import '../../components/text_bold_grey.dart';
 
 class ProgressChecklistPage extends StatefulWidget {
 

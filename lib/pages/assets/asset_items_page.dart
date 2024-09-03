@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:notifier_app/components/asset_items_component.dart';
+import 'package:notifier_app/components/assets_components/asset_items_component.dart';
 
-import '../components/background_container.dart';
-import '../components/custom_app_bar.dart';
-import '../components/nav_bar.dart';
-import '../components/search_field.dart';
+import '../../components/background_container.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/nav_bar.dart';
+import '../../components/search_field.dart';
 
 class AssetItemsPage extends StatefulWidget {
   const AssetItemsPage({super.key});

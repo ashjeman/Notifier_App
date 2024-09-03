@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../components/background_container.dart';
-import '../components/custom_app_bar.dart';
-import '../components/manual_alarm_field.dart';
-import '../components/nav_bar.dart';
-import '../components/save_button.dart';
+import '../../components/background_container.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/alarm_components/manual_alarm_field.dart';
+import '../../components/nav_bar.dart';
+import '../../components/save_button.dart';
 
 class TaskAssignmentPage extends StatefulWidget {
   const TaskAssignmentPage({super.key});

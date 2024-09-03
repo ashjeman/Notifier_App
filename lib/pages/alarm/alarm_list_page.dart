@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:notifier_app/components/alarm_component.dart';
+import 'package:notifier_app/components/alarm_components/alarm_component.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/search_field.dart';
 
-import '../components/custom_app_bar.dart';
-import '../components/nav_bar.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/nav_bar.dart';
 
 class AlarmListPage extends StatefulWidget {
   const AlarmListPage({super.key});

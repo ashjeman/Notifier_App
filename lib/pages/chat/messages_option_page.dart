@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/options_component.dart';
-import '../components/custom_app_bar.dart';
-import '../components/nav_bar.dart';
+import '../../components/custom_app_bar.dart';
+import '../../components/nav_bar.dart';
 
 class MessageOptionPage extends StatelessWidget {
   const MessageOptionPage({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_pie_chart/easy_pie_chart.dart';
-import 'package:notifier_app/components/task_details_button.dart';
+import 'package:notifier_app/components/tasks_components/task_details_button.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 import 'package:notifier_app/components/traffic_indicator.dart';

@@ -4,7 +4,7 @@ import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/categories.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/nav_bar.dart';
-import 'package:notifier_app/components/task_component.dart';
+import 'package:notifier_app/components/tasks_components/task_component.dart';
 import 'package:notifier_app/components/top_right_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -64,10 +64,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Row(
                     children: [
-                      TopRightButton(icon: const Icon(Icons.settings), callback: () {
+                      /*TopRightButton(icon: const Icon(Icons.settings), callback: () {
                         _displaySettings(context);
                       }),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 10),*/
                       TopRightButton(icon: const Icon(Icons.logout), callback: () => Navigator.of(context).popUntil((route) => route.isFirst)),
                       const SizedBox(width: 10),
                     ],
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Categories(
                         categoryIcon: 'assets/icons/task-check-icon.png',
-                        categoryName: 'Task Check List',
+                        categoryName: 'Task List',
                         toPage: '/taskchecklistpage',
                       ),
                     ],
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
   
-  Future _displaySettings(BuildContext context){
+  /*Future _displaySettings(BuildContext context){
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
@@ -227,8 +227,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-
-      
     );
-  }
+  }*/
 }
