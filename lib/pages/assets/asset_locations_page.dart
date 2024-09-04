@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/models/allAssetLocation.dart';
+import 'package:notifier_app/models/assetLocation.dart';
 import 'package:notifier_app/services/remote_service.dart';
 
 import '../../components/assets_components/asset_locations_component.dart';
@@ -18,7 +19,6 @@ class AssetLocationsPage extends StatefulWidget {
 }
 
 class _AssetLocationsPageState extends State<AssetLocationsPage> {
-
   List<AllAssetLocation>? allAssetLocations;
   List<AllSite>? allSites;
   var isLoaded = false;
@@ -35,7 +35,7 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
     allAssetLocations = await RemoteService().getAllAssetLocations();
     allSites = await RemoteService().getAllSite();
 
-    if (allAssetLocations != null){
+    if (allAssetLocations != null) {
       setState(() {
         isLoaded = true;
       });
@@ -45,21 +45,19 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset : true,
+        resizeToAvoidBottomInset: true,
         extendBodyBehindAppBar: true,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
-            child: CustomAppBar(
-                appBarTitle: 'Asset Location'
-            )
-        ),
+            child: CustomAppBar(appBarTitle: 'Asset Location')),
         bottomNavigationBar: NavBar(currentPageIndex: 0),
         body: Container(
           padding: const EdgeInsets.only(top: 70),
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/app-bg.png'),
-              fit: BoxFit.cover, // This makes sure the image covers the entire background
+              fit: BoxFit
+                  .cover, // This makes sure the image covers the entire background
             ),
           ),
           child: BackgroundContainer(
@@ -94,17 +92,18 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                   Expanded(
                       child: isLoaded
                           ? ListView.builder(
-                          padding: const EdgeInsets.only(top: 0.0),
-                          itemCount: allAssetLocations?.length,
-                          itemBuilder: (context, index){
-                            return AssetLocationsComponent(
-                                locationName: allAssetLocations![index].name,
-                                noOfAssets: allAssetLocations![index].itemcount.toString()
-                            );
-                          }
-                      )
-                      : const Center(child: CircularProgressIndicator())
-                  )
+                              padding: const EdgeInsets.only(top: 0.0),
+                              itemCount: allAssetLocations?.length,
+                              itemBuilder: (context, index) {
+                                return AssetLocationsComponent(
+                                  locationName:
+                                      allAssetLocations![index].name,
+                                  noOfAssets: allAssetLocations![index]
+                                      .itemcount
+                                      .toString(),
+                                  locationId: allAssetLocations![index].id,);
+                              })
+                          : const Center(child: CircularProgressIndicator()))
                   /*Column(
                     children: [
                       AssetLocationsComponent(
@@ -114,17 +113,25 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                     ],
                   )*/
                 ],
-              )
-          ),
-        )
-    );
+              )),
+        ));
   }
 
-  Future _addLocation(BuildContext context){
+  Future _addLocation(BuildContext context) {
+    TextEditingController controller = TextEditingController();
+    Future<AssetLocation?> assetLocation;
+
+    @override
+    void dispose() {
+      controller.dispose();
+      super.dispose();
+    }
+
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
       builder: (context) => Container(
         padding: const EdgeInsets.all(15),
         height: 250,
@@ -144,6 +151,7 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
             ),
             const SizedBox(height: 10),
             TextField(
+              controller: controller,
               decoration: InputDecoration(
                   hintText: 'New location name',
                   contentPadding: const EdgeInsets.all(5),
@@ -151,27 +159,31 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                   //fillColor: const Color(0xFF9DAEC3),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(width: 1)
-                  )
-              ),
+                      borderSide: const BorderSide(width: 1))),
             ),
             const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () {
+                        String newLocationName = controller.text;
+                        //print(newLocationName);
+
+                        setState(() {
+                          assetLocation = RemoteService().createAssetLocation(newLocationName, 1, 1);
+                        });
+
+                        Navigator.pop(context);
+                      },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF355992),
+                        backgroundColor: const Color(0xFF355992),
                       ),
                       child: const Text(
                         'Save',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
-                        ),
-                      )
-                  ),
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      )),
                 )
               ],
             )
@@ -182,7 +194,6 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
   }
 
   Future _siteOption(BuildContext context) {
-    AllSite? selectedSite;
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -207,14 +218,17 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
               ),
             ),
             const SizedBox(height: 10),
-            /*DropdownButton(
-                items: items,
-                onChanged: (allSites) {
-                  setState(() {
-                    selectedSite = allSites;
-                  });
-                }
-            ),*/
+            DropdownButton(
+                value: _value,
+                items: allSites?.map((e) {
+                  return DropdownMenuItem(
+                    value: e.id,
+                    child: Text("${e.siteName}"),
+                  );
+                }).toList(),
+                onChanged: (v) {
+                  _value = v as int;
+                }),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -240,5 +254,4 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
       ),
     );
   }
-
 }

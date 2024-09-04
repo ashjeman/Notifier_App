@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
+import '../../models/assetLocation.dart';
+import '../../services/remote_service.dart';
 import '../header.dart';
 
 class AssetLocationsComponent extends StatefulWidget {
   String locationName;
+  int locationId;
   final String noOfAssets;
 
   AssetLocationsComponent({
     super.key,
     required this.locationName,
+    required this.locationId,
     required this.noOfAssets,
   });
 
@@ -57,7 +63,7 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
               ),
             ],
           ),
-          TextGrey(textDetails: widget.noOfAssets),
+          TextGrey(textDetails: '${widget.noOfAssets} assets'),
           const SizedBox(height: 15),
           const Row(
             children: [
@@ -86,11 +92,14 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
     if (action == 'Edit') {
       _editLocation(context);
     } else if (action == 'Delete') {
-      // Navigate to User List
+      RemoteService().deleteAssetLocation(widget.locationId);
     }
   }
 
   Future _editLocation(BuildContext context){
+    TextEditingController controller = TextEditingController();
+    Future<AssetLocation?> assetLocation;
+
     return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
@@ -113,16 +122,23 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
               ),
             ),
             const SizedBox(height: 10),
-            const TextField(
+            TextField(
+              controller: controller,
               decoration: InputDecoration(
-                  hintText: "New name..."
+                  hintText: widget.locationName
               ),
             ),
             const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(onPressed: (){},
+                  child: ElevatedButton(onPressed: (){
+                    String editLocationName = controller.text;
+
+                    assetLocation = RemoteService().editAssetLocation(widget.locationId, editLocationName);
+                    //print(widget.locationId);
+                    Navigator.pop(context);
+                  },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF355992),
                       ),
