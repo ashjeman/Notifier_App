@@ -16,6 +16,8 @@ class ChatHistoryPage extends StatefulWidget {
 }
 
 class _ChatHistoryPageState extends State<ChatHistoryPage> {
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +46,7 @@ class _ChatHistoryPageState extends State<ChatHistoryPage> {
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      const Expanded(child: SearchField()),
+                      Expanded(child: SearchField(controller: controller, onChanged: (String ) {  },)),
                       const SizedBox(width: 10),
                       GestureDetector(
                         onTap: () {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/models/allAssetLocation.dart';
 import 'package:notifier_app/models/assetLocation.dart';
-import 'package:notifier_app/services/remote_service.dart';
+import 'package:notifier_app/services/asset_location_service.dart';
 
 import '../../components/assets_components/asset_locations_component.dart';
 import '../../components/background_container.dart';
@@ -24,10 +24,11 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
   var isLoaded = false;
   int _value = 1;
 
+  List<AllAssetLocation>? foundLocations = [];
+
   @override
   void initState() {
     super.initState();
-
     getData();
   }
 
@@ -38,83 +39,91 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
     if (allAssetLocations != null) {
       setState(() {
         isLoaded = true;
+        foundLocations = allAssetLocations; // Initialize foundLocations after loading data
       });
     }
   }
 
+  void runFilter(String userInput) {
+    List<AllAssetLocation>? results = [];
+
+    if (userInput.isEmpty) {
+      results = allAssetLocations; // Use the original list if no input is provided
+    } else if (allAssetLocations != null) {
+      results = allAssetLocations!.where((location) =>
+          location.name.toLowerCase().contains(userInput.toLowerCase())).toList();
+    }
+
+    setState(() {
+      foundLocations = results;
+    });
+  }
+
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: true,
-        extendBodyBehindAppBar: true,
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(60),
-            child: CustomAppBar(appBarTitle: 'Asset Location')),
-        bottomNavigationBar: NavBar(currentPageIndex: 0),
-        body: Container(
-          padding: const EdgeInsets.only(top: 70),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/app-bg.png'),
-              fit: BoxFit
-                  .cover, // This makes sure the image covers the entire background
-            ),
+      resizeToAvoidBottomInset: true,
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: CustomAppBar(appBarTitle: 'Asset Location')),
+      bottomNavigationBar: NavBar(currentPageIndex: 0),
+      body: Container(
+        padding: const EdgeInsets.only(top: 70),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/app-bg.png'),
+            fit: BoxFit.cover, // This makes sure the image covers the entire background
           ),
-          child: BackgroundContainer(
-              boxHeight: 800,
-              bgChild: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const ContainerHeader(headerTitle: 'Location List'),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              _siteOption(context);
-                            },
-                            child: const Icon(Icons.explore, size: 28),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              _addLocation(context);
-                            },
-                            child: const Icon(Icons.add, size: 28),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const SearchField(),
-                  const SizedBox(height: 10),
-                  Expanded(
-                      child: isLoaded
-                          ? ListView.builder(
-                              padding: const EdgeInsets.only(top: 0.0),
-                              itemCount: allAssetLocations?.length,
-                              itemBuilder: (context, index) {
-                                return AssetLocationsComponent(
-                                  locationName:
-                                      allAssetLocations![index].name,
-                                  noOfAssets: allAssetLocations![index]
-                                      .itemcount
-                                      .toString(),
-                                  locationId: allAssetLocations![index].id,);
-                              })
-                          : const Center(child: CircularProgressIndicator()))
-                  /*Column(
-                    children: [
-                      AssetLocationsComponent(
-                          locationName: 'Lobby',
-                          noOfAssets: '3 Assets'
-                      )
-                    ],
-                  )*/
-                ],
-              )),
-        ));
+        ),
+        child: BackgroundContainer(
+            boxHeight: 800,
+            bgChild: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const ContainerHeader(headerTitle: 'Location List'),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _siteOption(context);
+                          },
+                          child: const Icon(Icons.explore, size: 28),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _addLocation(context);
+                          },
+                          child: const Icon(Icons.add, size: 28),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10),
+                SearchField(controller: controller, onChanged: (userInput) => runFilter(userInput)),
+                const SizedBox(height: 10),
+                Expanded(
+                    child: isLoaded
+                        ? ListView.builder(
+                        padding: const EdgeInsets.only(top: 0.0),
+                        itemCount: foundLocations?.length,
+                        itemBuilder: (context, index) {
+                          return AssetLocationsComponent(
+                              locationName: foundLocations![index].name,
+                              noOfAssets: foundLocations![index].itemcount.toString(),
+                              locationId: foundLocations![index].id
+                          );
+                        })
+                        : const Center(child: CircularProgressIndicator())),
+              ],
+            )),
+      ),
+    );
   }
 
   Future _addLocation(BuildContext context) {
@@ -155,8 +164,6 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
               decoration: InputDecoration(
                   hintText: 'New location name',
                   contentPadding: const EdgeInsets.all(5),
-                  //filled: true,
-                  //fillColor: const Color(0xFF9DAEC3),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: const BorderSide(width: 1))),
@@ -168,7 +175,6 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                   child: ElevatedButton(
                       onPressed: () {
                         String newLocationName = controller.text;
-                        //print(newLocationName);
 
                         setState(() {
                           assetLocation = RemoteService().createAssetLocation(newLocationName, 1, 1);
@@ -227,7 +233,9 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                   );
                 }).toList(),
                 onChanged: (v) {
-                  _value = v as int;
+                  setState(() {
+                    _value = v as int;
+                  });
                 }),
             const SizedBox(height: 10),
             Row(

@@ -11,6 +11,8 @@ class EditHistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
+
     return Scaffold(
       resizeToAvoidBottomInset : false,
       extendBodyBehindAppBar: true,
@@ -29,13 +31,13 @@ class EditHistoryPage extends StatelessWidget {
             fit: BoxFit.cover, // This makes sure the image covers the entire background
           ),
         ),
-        child: const BackgroundContainer(
+        child: BackgroundContainer(
           boxHeight: 800,
           bgChild: Column(
             children: [
-              SearchField(),
-              SizedBox(height: 10),
-              Column(
+              SearchField(controller: controller, onChanged: (String ) {  },),
+              const SizedBox(height: 10),
+              const Column(
                 children: [
                   EditHistoryComponent()
                 ],

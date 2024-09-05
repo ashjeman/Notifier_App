@@ -14,6 +14,8 @@ class AssetItemsPage extends StatefulWidget {
 }
 
 class _AssetItemsPageState extends State<AssetItemsPage> {
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +43,7 @@ class _AssetItemsPageState extends State<AssetItemsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Expanded(child: SearchField()),
+                      Expanded(child: SearchField(controller: controller, onChanged: (String ) {  },)),
                       const SizedBox(width: 10),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(context, '/assetdetailspage'),
@@ -53,10 +55,14 @@ class _AssetItemsPageState extends State<AssetItemsPage> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  const Column(
-                    children: [
-                      AssetItemsComponent()
-                    ],
+                  Expanded(
+                      child: ListView.builder(
+                          padding: const EdgeInsets.only(top: 0.0),
+                          itemCount: 20,
+                          itemBuilder: (context, index){
+                            return AssetItemsComponent();
+                          }
+                      )
                   )
                 ],
               )

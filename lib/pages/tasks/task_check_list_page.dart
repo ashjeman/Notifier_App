@@ -15,6 +15,8 @@ class TaskCheckListPage extends StatefulWidget {
 }
 
 class _TaskCheckListPageState extends State<TaskCheckListPage> {
+  TextEditingController controller = TextEditingController();
+
   int? _sliding = 0;
 
   @override
@@ -57,7 +59,7 @@ class _TaskCheckListPageState extends State<TaskCheckListPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              const SearchField(),
+              SearchField(controller: controller, onChanged: (String ) {  },),
               const SizedBox(height: 10),
               CupertinoSlidingSegmentedControl(
                 children: const {

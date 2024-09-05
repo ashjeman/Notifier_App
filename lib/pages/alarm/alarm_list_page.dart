@@ -16,6 +16,8 @@ class AlarmListPage extends StatefulWidget {
 }
 
 class _AlarmListPageState extends State<AlarmListPage> {
+
+  TextEditingController controller = TextEditingController();
   int? _sliding = 0;
   String alarmSort = 'Date';
   @override
@@ -86,7 +88,7 @@ class _AlarmListPageState extends State<AlarmListPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              const SearchField(),
+              SearchField(controller: controller, onChanged: (String ) {  },),
               const SizedBox(height: 10),
               CupertinoSlidingSegmentedControl(
                 children: const {

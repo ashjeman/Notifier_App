@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
 import '../../models/assetLocation.dart';
-import '../../services/remote_service.dart';
+import '../../services/asset_location_service.dart';
 import '../header.dart';
 
 class AssetLocationsComponent extends StatefulWidget {

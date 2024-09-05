@@ -16,6 +16,7 @@ class ScannedItemsPage extends StatefulWidget {
 }
 
 class _ScannedItemsPageState extends State<ScannedItemsPage> {
+  TextEditingController controller = TextEditingController();
   String scanResult = '';
 
   Future<void> scanQR() async {
@@ -69,7 +70,7 @@ class _ScannedItemsPageState extends State<ScannedItemsPage> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  const SearchField(),
+                  SearchField(controller: controller, onChanged: (String ) {  },),
                   const SizedBox(height: 10),
                   const Column(
                     children: [

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:notifier_app/components/assets_components/asset_locations_component.dart';
 import 'package:notifier_app/models/allAssetLocation.dart';
 import 'package:notifier_app/models/allSite.dart';
 import 'package:notifier_app/models/assetLocation.dart';
@@ -95,8 +94,4 @@ class RemoteService{
     }
     return null;
   }
-
-
-
-
 }
