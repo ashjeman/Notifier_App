@@ -6,7 +6,7 @@ import 'package:notifier_app/models/allAssetLocation.dart';
 import 'package:notifier_app/models/allSite.dart';
 import 'package:notifier_app/models/assetLocation.dart';
 
-class RemoteService{
+class AssetLocationService{
 
   Future<List<AllAssetLocation>?> getAllAssetLocations() async {
     var client = http.Client();

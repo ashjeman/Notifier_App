@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notifier_app/pages/alarm/alarm_media.dart';
 import 'package:notifier_app/pages/assets/add_inspection_dialog.dart';
 import 'package:notifier_app/pages/alarm/alarm_list_page.dart';
 import 'package:notifier_app/pages/assets/asset_details_page.dart';
@@ -55,7 +56,8 @@ class NotifierApp extends StatelessWidget {
         '/taskassignmentpage': (context) => const TaskAssignmentPage(),
         '/assetoptionpage': (context) => const AssetOptionPage(),
         '/scanneditemspage': (context) => const ScannedItemsPage(),
-        '/messageoptionpage': (context) => const MessageOptionPage()
+        '/messageoptionpage': (context) => const MessageOptionPage(),
+        '/alarmmedia': (context) => const AlarmMedia()
       },
     );
   }

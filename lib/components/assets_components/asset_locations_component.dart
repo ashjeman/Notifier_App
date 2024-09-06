@@ -62,25 +62,6 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
             ],
           ),
           TextGrey(textDetails: '${widget.noOfAssets} assets'),
-          const SizedBox(height: 15),
-          const Row(
-            children: [
-              Expanded(
-                child: LinearProgressIndicator(
-                  backgroundColor: Color(0xFF8D97A5),
-                  value: 0.7,
-                  minHeight: 10,
-                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF355992)),
-                ),
-              ),
-              SizedBox(width: 7),
-              Text(
-                '70%',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 12),
-              ),
-            ],
-          ),
         ],
       ),
     );
@@ -90,7 +71,7 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
     if (action == 'Edit') {
       _editLocation(context);
     } else if (action == 'Delete') {
-      RemoteService().deleteAssetLocation(widget.locationId);
+      AssetLocationService().deleteAssetLocation(widget.locationId);
     }
   }
 
@@ -132,8 +113,11 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
                 Expanded(
                   child: ElevatedButton(onPressed: (){
                     String editLocationName = controller.text;
-
-                    assetLocation = RemoteService().editAssetLocation(widget.locationId, editLocationName);
+                    if(editLocationName == ''){
+                      assetLocation = AssetLocationService().editAssetLocation(widget.locationId, widget.locationName);
+                    }else{
+                      assetLocation = AssetLocationService().editAssetLocation(widget.locationId, editLocationName);
+                    }
                     //print(widget.locationId);
                     Navigator.pop(context);
                   },
@@ -156,4 +140,5 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
       ),
     );
   }
+
 }

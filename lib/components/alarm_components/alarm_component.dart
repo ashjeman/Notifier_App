@@ -1,16 +1,51 @@
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 import 'package:notifier_app/components/traffic_indicator.dart';
+import 'package:video_player/video_player.dart';
 
 class AlarmComponent extends StatefulWidget {
-  const AlarmComponent({super.key});
+  String? alarmTitle;
+  String? alarmGroup;
+  DateTime? dateTime;
+  String mediaLink;
+
+  AlarmComponent({
+    super.key,
+    required this.alarmTitle,
+    required this.alarmGroup,
+    required this.dateTime,
+    required this.mediaLink
+  });
 
   @override
   State<AlarmComponent> createState() => _AlarmComponentState();
 }
 
 class _AlarmComponentState extends State<AlarmComponent> {
+  late VideoPlayerController videoPlayerController;
+  late FlickManager flickManager;
+  Future<void>? initializeVideoPlayerFuture;
+  
+  @override
+  void initState() {
+    super.initState();
+    flickManager = FlickManager(
+      videoPlayerController: VideoPlayerController.networkUrl(
+          Uri.parse(widget.mediaLink)
+      )..initialize().then((_) {
+        setState(() {}); // Trigger rebuild once the video is initialized
+      }),
+    );
+  }
+
+  @override
+  void dispose() {
+    flickManager.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +61,7 @@ class _AlarmComponentState extends State<AlarmComponent> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextBoldGrey(boldText: 'Site is under construction. '),
+              TextBoldGrey(boldText: widget.alarmTitle!),
               Row(
                 children: [
                   TrafficIndicator(indicatorColor: Colors.red),
@@ -42,8 +77,8 @@ class _AlarmComponentState extends State<AlarmComponent> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextGrey(textDetails: 'CCTV (Alarm Group)'),
-                  TextGrey(textDetails: '30/3/2024')
+                  TextGrey(textDetails: widget.alarmGroup!),
+                  TextGrey(textDetails: widget.dateTime.toString())
                 ],
               ),
               PopupMenuButton(
@@ -92,11 +127,40 @@ class _AlarmComponentState extends State<AlarmComponent> {
     if(action == 'Message'){
       Navigator.pushNamed(context, '/chatpage');
     } else if(action == 'Playback'){
-      //Navigate to Camera
+      watchMedia(context);
+      //Navigator.pushNamed(context, '/alarmmedia');
     } else if(action == 'Close Alarm'){
       // Close Alarm
     } else if(action == 'Checklist'){
       Navigator.pushNamed(context, '/progresschecklistpage');
     }
+  }
+
+  Future<void> watchMedia(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: SizedBox(
+            height: 300,
+            child: AspectRatio(
+              aspectRatio: 16/9,
+              child: FlickVideoPlayer(flickManager: flickManager),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                dispose();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

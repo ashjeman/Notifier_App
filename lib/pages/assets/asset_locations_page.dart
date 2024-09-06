@@ -33,8 +33,8 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
   }
 
   getData() async {
-    allAssetLocations = await RemoteService().getAllAssetLocations();
-    allSites = await RemoteService().getAllSite();
+    allAssetLocations = await AssetLocationService().getAllAssetLocations();
+    allSites = await AssetLocationService().getAllSite();
 
     if (allAssetLocations != null) {
       setState(() {
@@ -119,7 +119,8 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                               locationId: foundLocations![index].id
                           );
                         })
-                        : const Center(child: CircularProgressIndicator())),
+                        : const Center(child: CircularProgressIndicator())
+                ),
               ],
             )),
       ),
@@ -175,9 +176,10 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                   child: ElevatedButton(
                       onPressed: () {
                         String newLocationName = controller.text;
+                        getData();
 
                         setState(() {
-                          assetLocation = RemoteService().createAssetLocation(newLocationName, 1, 1);
+                          assetLocation = AssetLocationService().createAssetLocation(newLocationName, 1, 0);
                         });
 
                         Navigator.pop(context);
