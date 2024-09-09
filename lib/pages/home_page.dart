@@ -1,11 +1,15 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/categories.dart';
 import 'package:notifier_app/components/header.dart';
 import 'package:notifier_app/components/nav_bar.dart';
 import 'package:notifier_app/components/tasks_components/task_component.dart';
 import 'package:notifier_app/components/top_right_button.dart';
+
+import '../controller.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -16,8 +20,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  late Controller controller;
   String currentSite = 'Servo';
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.put(Controller());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +91,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const ContainerHeader(headerTitle: 'Categories'),
+                  Row(children: [Text("${controller.userName.value} | ${controller.userId.value} | ${controller.mobileNo.value}")],),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,

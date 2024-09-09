@@ -1,6 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:notifier_app/components/login_button_component.dart';
+import 'package:notifier_app/models/userDetails.dart';
+import 'package:notifier_app/services/user_auth.dart';
+
+import '../controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,7 +16,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  static const String correctOtp = "555555";
+
+  late Controller controller;
+  String textFieldHint = 'Mobile Number';
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.put(Controller());
+  }
+
   int secondsLeft = 60;
   bool otpRequested = false;
   bool otpError = false;
@@ -22,8 +37,12 @@ class _LoginPageState extends State<LoginPage> {
   void dispose() {
     // Dispose of the controller and timer when the widget is removed from the widget tree
     userInputController.dispose();
-    countdownTimer?.cancel();
+
     super.dispose();
+  }
+
+  void stopTimer(){
+    countdownTimer?.cancel();
   }
 
   void startCountdown() {
@@ -32,33 +51,45 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           secondsLeft--;
         });
-      } else {
-        timer.cancel();
+      } else if (secondsLeft == 0){
         setState(() {
-          otpError = true;
           otpRequested = false;
+          textFieldHint = 'Mobile Number';
         });
+      }else {
+      timer.cancel();
+      setState(() {
+      otpError = true;
+      otpRequested = false;
+      });
       }
     });
   }
 
   void handleOtpRequest() {
+    Future<UserDetails?> userDetails;
+
     setState(() {
       otpRequested = true;
       otpError = false;
       secondsLeft = 60;
+      textFieldHint = 'OTP Code';
     });
     startCountdown();
+    userDetails = UserAuth().sendOtp(userInputController.text);
+    //print(userInputController.text);
+    userInputController.clear();
   }
 
   void handleOtpVerification() {
-    if (userInputController.text == correctOtp) {
+    if (userInputController.text == controller.authCode.value) {
       countdownTimer?.cancel();
       setState(() {
         otpError = false;
         otpRequested = false;
       });
       Navigator.pushNamed(context, '/homepage');
+      stopTimer();
     } else {
       setState(() {
         otpError = true;
@@ -154,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(vertical: 10),
                             prefixIcon: const Icon(Icons.phone_android),
-                            hintText: 'Mobile Number',
+                            hintText: textFieldHint,
                             filled: true,
                             fillColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
@@ -170,6 +201,26 @@ class _LoginPageState extends State<LoginPage> {
                       otpErrorText(),
                       const SizedBox(height: 20),
                       otpActionButton(),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ElevatedButton(
+                              onPressed: (){
+                                controller.userId = 152.obs;
+                                controller.userName = 'arun@servosecurity.my'.obs;
+                                controller.emailAddress = 'arun@servosecurity.my'.obs;
+                                controller.mobileNo = '0129228390'.obs;
+                                Navigator.pushNamed(context, '/homepage');
+                              },
+                              child: const Text("Edmund's acc")
+                          ),
+                          const ElevatedButton(
+                              onPressed: null,
+                              child: Text("Stanley's acc")
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),
