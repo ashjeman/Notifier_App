@@ -27,7 +27,7 @@ class _AlarmComponentState extends State<AlarmComponent> {
   late VideoPlayerController videoPlayerController;
   late FlickManager flickManager;
   Future<void>? initializeVideoPlayerFuture;
-  
+
   @override
   void initState() {
     super.initState();
@@ -61,7 +61,9 @@ class _AlarmComponentState extends State<AlarmComponent> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextBoldGrey(boldText: widget.alarmTitle!),
+              Expanded(
+                child: TextBoldGrey(boldText: widget.alarmTitle!),
+              ),
               Row(
                 children: [
                   TrafficIndicator(indicatorColor: Colors.red),
@@ -144,18 +146,15 @@ class _AlarmComponentState extends State<AlarmComponent> {
         return AlertDialog(
           title: const Text('AlertDialog Title'),
           content: SizedBox(
-            height: 300,
-            child: AspectRatio(
-              aspectRatio: 16/9,
-              child: FlickVideoPlayer(flickManager: flickManager),
-            ),
+            width: double.maxFinite,
+            height: 200,
+            child: AspectRatio(aspectRatio: 16/9, child: FlickVideoPlayer(flickManager: flickManager))
           ),
           actions: <Widget>[
             TextButton(
               child: const Text('Close'),
               onPressed: () {
                 Navigator.of(context).pop();
-                dispose();
               },
             ),
           ],
