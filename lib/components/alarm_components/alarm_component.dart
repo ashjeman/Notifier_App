@@ -24,6 +24,7 @@ class AlarmComponent extends StatefulWidget {
 }
 
 class _AlarmComponentState extends State<AlarmComponent> {
+
   late VideoPlayerController videoPlayerController;
   late FlickManager flickManager;
   Future<void>? initializeVideoPlayerFuture;
@@ -31,13 +32,23 @@ class _AlarmComponentState extends State<AlarmComponent> {
   @override
   void initState() {
     super.initState();
-    flickManager = FlickManager(
-      videoPlayerController: VideoPlayerController.networkUrl(
-          Uri.parse(widget.mediaLink)
-      )..initialize().then((_) {
-        setState(() {}); // Trigger rebuild once the video is initialized
-      }),
-    );
+    if (widget.mediaLink == ''){
+      print('No media found');
+
+    }else if (widget.mediaLink.toLowerCase().endsWith('jpg')){
+      widget.mediaLink = "http://vm.eleware.net${widget.mediaLink}";
+
+    }else if (widget.mediaLink.toLowerCase().endsWith('mp4')){
+      flickManager = FlickManager(
+        videoPlayerController: VideoPlayerController.networkUrl(
+            Uri.parse(widget.mediaLink)
+        )..initialize().then((_) {
+          setState(() {}); // Trigger rebuild once the video is initialized
+        }),
+      );
+    }else{
+      print('Unknown media format');
+    }
   }
 
   @override
@@ -64,13 +75,13 @@ class _AlarmComponentState extends State<AlarmComponent> {
               Expanded(
                 child: TextBoldGrey(boldText: widget.alarmTitle!),
               ),
-              Row(
-                children: [
-                  TrafficIndicator(indicatorColor: Colors.red),
-                  const SizedBox(width: 5),
-                  TextBoldGrey(boldText: 'High'),
-                ],
-              ),
+              //Row(
+              //  children: [
+              //    TrafficIndicator(indicatorColor: Colors.red),
+              //    const SizedBox(width: 5),
+              //    TextBoldGrey(boldText: 'High'),
+              //  ],
+              //),
             ],
           ),
           Row(
@@ -138,28 +149,82 @@ class _AlarmComponentState extends State<AlarmComponent> {
     }
   }
 
+
+
   Future<void> watchMedia(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('AlertDialog Title'),
-          content: SizedBox(
-            width: double.maxFinite,
-            height: 200,
-            child: AspectRatio(aspectRatio: 16/9, child: FlickVideoPlayer(flickManager: flickManager))
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+
+    if (widget.mediaLink == ''){
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alarm media'),
+            content: const Text("No media attached"),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+
+    }else if (widget.mediaLink.toLowerCase().endsWith('jpg')){
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alarm media'),
+            content: Image.network(widget.mediaLink),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+
+    }else if (widget.mediaLink.toLowerCase().endsWith('mp4')){
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alarm media'),
+            content: SizedBox(
+                width: double.maxFinite,
+                height: 200,
+                child: AspectRatio(aspectRatio: 16/9, child: FlickVideoPlayer(flickManager: flickManager))
             ),
-          ],
-        );
-      },
-    );
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }else{
+      print('Unknown media format');
+    }
+
+
+
+
+
+
+
   }
 }
