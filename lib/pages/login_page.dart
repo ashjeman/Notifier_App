@@ -35,9 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // Dispose of the controller and timer when the widget is removed from the widget tree
     userInputController.dispose();
-
     super.dispose();
   }
 

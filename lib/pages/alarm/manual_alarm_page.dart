@@ -42,7 +42,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
           appBarTitle: 'Manual Alarm'
         )
       ),
-      bottomNavigationBar: NavBar(currentPageIndex: 2),
+      //bottomNavigationBar: NavBar(currentPageIndex: 2),
       body: Container(
         padding: const EdgeInsets.only(top: 70),
         decoration: const BoxDecoration(
@@ -177,7 +177,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                             )
                           ],
                         ),
-                        Row(
+                        /*Row(
                           children: [
                             PopupMenuLabel(fieldIconPath: 'assets/icons/severity-icon.png', fieldName: 'Severity level'),
                             Expanded(
@@ -244,7 +244,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                                 )
                             )
                           ],
-                        ),
+                        ),*/
                         Column(
                           children: [
                             PopupMenuLabel(fieldIconPath: 'assets/icons/chatting-icon.png', fieldName: 'Description'),

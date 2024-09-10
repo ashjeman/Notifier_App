@@ -69,7 +69,7 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: CustomAppBar(appBarTitle: 'Asset Location')),
-      bottomNavigationBar: NavBar(currentPageIndex: 0),
+      //bottomNavigationBar: NavBar(currentPageIndex: 0),
       body: Container(
         padding: const EdgeInsets.only(top: 70),
         decoration: const BoxDecoration(

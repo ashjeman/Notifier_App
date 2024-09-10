@@ -8,5 +8,7 @@ class Controller extends GetxController{
   RxString mobileNo = ''.obs;
   RxString authCode = ''.obs;
 
+  RxInt siteId = 1.obs;
+
   RxBool registered = false.obs;
 }

@@ -45,7 +45,7 @@ class _AssetItemsPageState extends State<AssetItemsPage> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
             child: CustomAppBar(appBarTitle: 'Asset Items')),
-        bottomNavigationBar: NavBar(currentPageIndex: 0),
+        //bottomNavigationBar: NavBar(currentPageIndex: 0),
         body: Container(
           padding: const EdgeInsets.only(top: 70),
           decoration: const BoxDecoration(

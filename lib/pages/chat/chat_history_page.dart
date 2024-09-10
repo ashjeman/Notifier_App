@@ -29,7 +29,7 @@ class _ChatHistoryPageState extends State<ChatHistoryPage> {
               appBarTitle: 'Messages'
           )
       ),
-      bottomNavigationBar: NavBar(currentPageIndex: 3),
+      //bottomNavigationBar: NavBar(currentPageIndex: 3),
       body: Container(
           padding: const EdgeInsets.only(top: 70),
           decoration: const BoxDecoration(

@@ -203,7 +203,7 @@ class _AlarmComponentState extends State<AlarmComponent> {
             content: SizedBox(
                 width: double.maxFinite,
                 height: 200,
-                child: AspectRatio(aspectRatio: 16/9, child: FlickVideoPlayer(flickManager: flickManager))
+                child: FlickVideoPlayer(flickManager: flickManager)
             ),
             actions: <Widget>[
               TextButton(

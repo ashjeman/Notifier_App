@@ -37,7 +37,7 @@ class _AssetInspectionPageState extends State<AssetInspectionPage> {
               appBarTitle: 'Asset Inspection'
           )
       ),
-      bottomNavigationBar: NavBar(currentPageIndex: 2),
+      //bottomNavigationBar: NavBar(currentPageIndex: 2),
       body: Container(
           padding: const EdgeInsets.only(top: 70),
           decoration: const BoxDecoration(

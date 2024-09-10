@@ -24,18 +24,32 @@ class _NavBarState extends State<NavBar> {
         ),
         child: NavigationBar(
           selectedIndex: widget.currentPageIndex,
-          onDestinationSelected: (int index) {
-            setState(() {
-              widget.currentPageIndex = index;
-              switch(widget.currentPageIndex){
-                case 0: Navigator.pushNamed(context, '/homepage'); break;
-                case 1: Navigator.pushNamed(context, '/dashboardpage'); break;
-                case 2: Navigator.pushNamed(context, '/alarmlistpage'); break;
-                case 3: Navigator.pushNamed(context, '/messageoptionpage'); break;
+            onDestinationSelected: (int index) {
+              if (index != widget.currentPageIndex) {
+                setState(() {
+                  widget.currentPageIndex = index;
+                  switch(widget.currentPageIndex) {
+                    case 0: Navigator.popUntil(context, ModalRoute.withName('/login'));
+                            Navigator.pushNamed(context, '/homepage');
+                            widget.currentPageIndex = 0;
+                            break;
+                    case 1: Navigator.popUntil(context, ModalRoute.withName('/homepage'));
+                            Navigator.pushNamed(context, '/dashboardpage');
+                            widget.currentPageIndex = 1;
+                            break;
+                    break;
+                    case 2: Navigator.popUntil(context, ModalRoute.withName('/homepage'));
+                            Navigator.pushNamed(context, '/alarmlistpage');
+                            widget.currentPageIndex = 2;
+                            break;
+                    case 3: Navigator.popUntil(context, ModalRoute.withName('/homepage'));
+                            Navigator.pushNamed(context, '/messageoptionpage');
+                            widget.currentPageIndex = 3;
+                            break;
+                  }
+                });
               }
-
-            });
-          },
+            },
           destinations: const [
             NavigationDestination(
               selectedIcon: ImageIcon(AssetImage('assets/icons/home-icon.png'), color: Color(0xFFF6C601)),
