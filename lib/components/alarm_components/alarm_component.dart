@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
 import 'package:notifier_app/components/traffic_indicator.dart';
+import 'package:notifier_app/services/alarm_service.dart';
 import 'package:video_player/video_player.dart';
 
 class AlarmComponent extends StatefulWidget {
   String? alarmTitle;
   String? alarmGroup;
+  int alarmId;
   DateTime? dateTime;
   String mediaLink;
 
@@ -15,6 +17,7 @@ class AlarmComponent extends StatefulWidget {
     super.key,
     required this.alarmTitle,
     required this.alarmGroup,
+    required this.alarmId,
     required this.dateTime,
     required this.mediaLink
   });
@@ -55,6 +58,80 @@ class _AlarmComponentState extends State<AlarmComponent> {
   void dispose() {
     flickManager.dispose();
     super.dispose();
+  }
+
+  void closeAlarm(){
+    AlarmService().updateAlarmState(widget.alarmId);
+  }
+
+  Future<void> watchMedia(BuildContext context) async {
+
+    if (widget.mediaLink == ''){
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alarm media'),
+            content: const Text("No media attached"),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+
+    }else if (widget.mediaLink.toLowerCase().endsWith('jpg')){
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alarm media'),
+            content: Image.network(widget.mediaLink),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+
+    }else if (widget.mediaLink.toLowerCase().endsWith('mp4')){
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Alarm media'),
+            content: SizedBox(
+                width: double.maxFinite,
+                height: 200,
+                child: FlickVideoPlayer(flickManager: flickManager)
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Close'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }else{
+      print('Unknown media format');
+    }
   }
 
   @override
@@ -143,88 +220,21 @@ class _AlarmComponentState extends State<AlarmComponent> {
       watchMedia(context);
       //Navigator.pushNamed(context, '/alarmmedia');
     } else if(action == 'Close Alarm'){
-      // Close Alarm
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text("Close this alarm?"),
+          action: SnackBarAction(
+            label: 'Confirm',
+            onPressed: (){
+              closeAlarm();
+            }
+            ),
+          duration: const Duration(milliseconds: 3000),
+        ),
+      );
     } else if(action == 'Checklist'){
       Navigator.pushNamed(context, '/progresschecklistpage');
     }
   }
 
-
-
-  Future<void> watchMedia(BuildContext context) async {
-
-    if (widget.mediaLink == ''){
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Alarm media'),
-            content: const Text("No media attached"),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Close'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-
-    }else if (widget.mediaLink.toLowerCase().endsWith('jpg')){
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Alarm media'),
-            content: Image.network(widget.mediaLink),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Close'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-
-    }else if (widget.mediaLink.toLowerCase().endsWith('mp4')){
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Alarm media'),
-            content: SizedBox(
-                width: double.maxFinite,
-                height: 200,
-                child: FlickVideoPlayer(flickManager: flickManager)
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Close'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }else{
-      print('Unknown media format');
-    }
-
-
-
-
-
-
-
-  }
 }

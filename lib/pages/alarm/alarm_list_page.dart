@@ -136,6 +136,7 @@ class _AlarmListPageState extends State<AlarmListPage> {
                         return AlarmComponent(
                           alarmTitle: foundAlarm![index].message,
                           alarmGroup: foundAlarm![index].alarmGroupName.toString(),
+                          alarmId: foundAlarm![index].id,
                           dateTime: foundAlarm![index].submissionDateTime,
                           mediaLink: '${foundAlarm![index].url}',);
                       })

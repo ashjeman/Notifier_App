@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/alarm_components/manual_alarm_field.dart';
 import 'package:notifier_app/components/save_button.dart';
+import 'package:notifier_app/services/asset_location_service.dart';
 
 import '../../components/custom_app_bar.dart';
-import '../../components/nav_bar.dart';
+import '../../models/allSite.dart';
+import '../../controller.dart';
 import '../../models/allAlarm.dart';
 
 class ManualAlarmPage extends StatefulWidget {
@@ -15,20 +19,38 @@ class ManualAlarmPage extends StatefulWidget {
 }
 
 class _ManualAlarmPageState extends State<ManualAlarmPage> {
+  late Controller controller;
+
   String alarmGroup = 'Alarm 1';
   DateTime alarmDate = DateTime.now();
   TimeOfDay alarmTime = TimeOfDay.now();
   AlarmGroupName? selectedGroupName;
+  EscalationState? selectedEscalationState;
+  int? selectedSite;
+  List<AllSite>? allSites;
+
+  getData() async {
+    allSites = await AssetLocationService().getAllSite();
+  }
 
   String getAlarmGroup(AlarmGroupName alarmGroupName){
     return alarmGroupName.toString().split('.').last;
   }
 
+  String getEscalationState(EscalationState escalationState){
+    return escalationState.toString().split('.').last;
+  }
+
   @override
   void initState() {
     super.initState();
-    // Initialize selectedAlarmGroup in initState
+    controller = Get.put(Controller());
     selectedGroupName = AlarmGroupName.values.first;
+    selectedEscalationState = EscalationState.PENDING;
+    selectedSite = controller.siteId.value;
+    getData().then((_) {
+      setState(() {}); // Trigger UI update after data is fetched
+    });
   }
 
   @override
@@ -173,6 +195,56 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                                     });
                                   },
                                   )],
+                                )
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Escalation state'),
+                            Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    DropdownButton<EscalationState>(
+                                      value: selectedEscalationState,
+                                      items: EscalationState.values.map((EscalationState escalationState) {
+                                        return DropdownMenuItem<EscalationState>(
+                                          value: escalationState,
+                                          child: Text(getEscalationState(escalationState)),
+                                        );
+                                      }).toList(),
+                                      onChanged: (EscalationState? value) {
+                                        setState(() {
+                                          selectedEscalationState = value;
+                                        });
+                                      },
+                                    )],
+                                )
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Site'),
+                            Flexible(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    DropdownButton( //taken from asset_location_page.dart
+                                        value: selectedSite,
+                                        items: allSites?.map((e) {
+                                          return DropdownMenuItem(
+                                            value: e.id,
+                                            child: Text("${e.siteName}"),
+                                          );
+                                        }).toList(),
+                                        onChanged: (v) {
+                                          setState(() {
+                                            selectedSite = v as int;
+                                          });
+                                        }),
+                                  ],
                                 )
                             )
                           ],
