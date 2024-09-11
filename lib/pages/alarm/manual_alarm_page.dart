@@ -7,6 +7,7 @@ import 'package:notifier_app/components/alarm_components/manual_alarm_field.dart
 import 'package:notifier_app/components/save_button.dart';
 import 'package:notifier_app/services/asset_location_service.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:notifier_app/services/manual_alarm_service.dart';
 
 import '../../components/custom_app_bar.dart';
 import '../../models/allSite.dart';
@@ -28,10 +29,11 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
   TimeOfDay alarmTime = TimeOfDay.now();
   AlarmGroupName? selectedGroupName;
   EscalationState? selectedEscalationState;
-  int? selectedSite;
+  int selectedSite = 0;
   List<AllSite>? allSites;
   String directoryPath = '';
   bool mediaSelected = false;
+  TextEditingController descriptionController = TextEditingController();
 
   @override
   void initState() {
@@ -39,7 +41,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
     controller = Get.put(Controller());
     selectedGroupName = AlarmGroupName.values.first;
     selectedEscalationState = EscalationState.PENDING;
-    selectedSite = controller.siteId.value;
+    int selectedSite = controller.siteId.value;
     getData().then((_) {
       setState(() {}); // Trigger UI update after data is fetched
     });
@@ -76,20 +78,6 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
     } else {
       // User canceled the picker
     }
-
-    /*
-    final String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
-
-    if (selectedDirectory == null) {
-      // User canceled the picker
-      // You can handle this scenario if needed, e.g., show a message to the user
-      print('No directory selected.');
-    } else {
-      setState(() {
-        directoryPath = selectedDirectory;
-      });
-    }
-     */
   }
 
   @override
@@ -299,74 +287,6 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                             )
                           ],
                         ),
-                        /*Row(
-                          children: [
-                            PopupMenuLabel(fieldIconPath: 'assets/icons/severity-icon.png', fieldName: 'Severity level'),
-                            Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    DropdownButton<String>(
-                                        value: 'Severity 1',
-                                        items: const [
-                                          DropdownMenuItem(
-                                            value: 'Severity 1',
-                                            child: Text('Severity 1'),
-                                          ),
-                                          DropdownMenuItem(
-                                            value: 'Severity 2',
-                                            child: Text('Severity 2'),
-                                          ),
-                                          DropdownMenuItem(
-                                            value: 'Severity 2',
-                                            child: Text('Severity 2'),
-                                          ),
-                                        ],
-                                        onChanged:  (String? newValue) {
-                                          setState(() {
-                                            alarmGroup = newValue!;
-                                          });
-                                        }
-                                    )
-                                  ],
-                                )
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            PopupMenuLabel(fieldIconPath: 'assets/icons/category-icon.png', fieldName: 'Category'),
-                            Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    DropdownButton<String>(
-                                        value: 'Category 1',
-                                        items: const [
-                                          DropdownMenuItem(
-                                            value: 'Category 1',
-                                            child: Text('Category 1'),
-                                          ),
-                                          DropdownMenuItem(
-                                            value: 'Category 2',
-                                            child: Text('Category 2'),
-                                          ),
-                                          DropdownMenuItem(
-                                            value: 'Category 2',
-                                            child: Text('Category 2'),
-                                          ),
-                                        ],
-                                        onChanged:  (String? newValue) {
-                                          setState(() {
-                                            alarmGroup = newValue!;
-                                          });
-                                        }
-                                    )
-                                  ],
-                                )
-                            )
-                          ],
-                        ),*/
                         Column(
                           children: [
                             PopupMenuLabel(fieldIconPath: 'assets/icons/chatting-icon.png', fieldName: 'Description'),
@@ -382,6 +302,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                                       borderSide: const BorderSide(width: 0)
                                   )
                               ),
+                              controller: descriptionController,
                             )
                           ],
                         ),
@@ -391,6 +312,14 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                ManualAlarmService().createManualAlarm(
+                                    controller.userId.value, //userID
+                                    descriptionController.text, //message
+                                    selectedSite, //siteID
+                                    alarmGroupId, //alarmGroupID
+                                    escalationState, //escalationState
+                                    file //filePath
+                                );
                                 //Navigator.pop(context);
                               },
                               child: SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit'),
