@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -5,6 +6,7 @@ import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/alarm_components/manual_alarm_field.dart';
 import 'package:notifier_app/components/save_button.dart';
 import 'package:notifier_app/services/asset_location_service.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../components/custom_app_bar.dart';
 import '../../models/allSite.dart';
@@ -28,6 +30,20 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
   EscalationState? selectedEscalationState;
   int? selectedSite;
   List<AllSite>? allSites;
+  String directoryPath = '';
+  bool mediaSelected = false;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.put(Controller());
+    selectedGroupName = AlarmGroupName.values.first;
+    selectedEscalationState = EscalationState.PENDING;
+    selectedSite = controller.siteId.value;
+    getData().then((_) {
+      setState(() {}); // Trigger UI update after data is fetched
+    });
+  }
 
   getData() async {
     allSites = await AssetLocationService().getAllSite();
@@ -41,16 +57,39 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
     return escalationState.toString().split('.').last;
   }
 
-  @override
-  void initState() {
-    super.initState();
-    controller = Get.put(Controller());
-    selectedGroupName = AlarmGroupName.values.first;
-    selectedEscalationState = EscalationState.PENDING;
-    selectedSite = controller.siteId.value;
-    getData().then((_) {
-      setState(() {}); // Trigger UI update after data is fetched
-    });
+  Future<void> openDirectoryPicker() async {
+
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      PlatformFile file = result.files.first;
+
+      print(file.name);
+      print(file.bytes);
+      print(file.size);
+      print(file.extension);
+      print(file.path);
+      setState(() {
+        directoryPath = file.path!;
+        mediaSelected = true;
+      });
+    } else {
+      // User canceled the picker
+    }
+
+    /*
+    final String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+
+    if (selectedDirectory == null) {
+      // User canceled the picker
+      // You can handle this scenario if needed, e.g., show a message to the user
+      print('No directory selected.');
+    } else {
+      setState(() {
+        directoryPath = selectedDirectory;
+      });
+    }
+     */
   }
 
   @override
@@ -82,25 +121,36 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                       children: [
                         Stack(
                           children: [
-                            Container(
+                            mediaSelected ?
+                            SizedBox(
                               height: 200,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xFFB2BED0),
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
+                              child: Image.file(File(directoryPath), width: double.infinity, fit: BoxFit.cover),
+                            )
+                            : Container(
+                                height: 200,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xFFB2BED0),
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                child: const Text("No media selected"),
                             ),
                             Positioned(
                                 right: 10,
                                 bottom: 10,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xFFC9D7EB),
-                                      borderRadius: BorderRadius.circular(30)
-                                  ),
-                                  height: 40,
-                                  width: 40,
-                                  child: const Icon(Icons.add),)
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    openDirectoryPicker();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xFFC9D7EB),
+                                        borderRadius: BorderRadius.circular(30)
+                                    ),
+                                    height: 40,
+                                    width: 40,
+                                    child: const Icon(Icons.add),),
+                                )
                             )
                           ],
                         ),
@@ -226,7 +276,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                         ),
                         Row(
                           children: [
-                            PopupMenuLabel(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Site'),
+                            //PopupMenuLabel(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Site'),
                             Flexible(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -340,7 +390,9 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
-                              onTap: () => Navigator.pop(context),
+                              onTap: () {
+                                //Navigator.pop(context);
+                              },
                               child: SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit'),
                             )
                           ],
