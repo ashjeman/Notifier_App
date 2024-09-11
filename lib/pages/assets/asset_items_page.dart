@@ -5,7 +5,6 @@ import 'package:notifier_app/services/asset_items_service.dart';
 
 import '../../components/background_container.dart';
 import '../../components/custom_app_bar.dart';
-import '../../components/nav_bar.dart';
 import '../../components/search_field.dart';
 
 class AssetItemsPage extends StatefulWidget {

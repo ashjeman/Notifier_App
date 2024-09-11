@@ -1,9 +1,9 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
 import 'package:notifier_app/models/allAlarm.dart';
+import 'package:notifier_app/models/allAlarmGroup.dart';
 
 import '../controller.dart';
 
@@ -32,6 +32,39 @@ class AlarmService{
     }
     return null;
   }
+
+  Future<List<AllAlarmGroup>?> getAlarmGroup() async{
+    var client = http.Client();
+    var uri = Uri.parse('http://13.126.15.56:180/api/AlarmGroup/GetAlarmGroupBySiteIdUserId?siteId=${controller.siteId.value}&userId=${controller.userId.value}');
+    var response = await client.get(uri);
+
+    if (response.statusCode == 200){
+      var json = response.body;
+      print("Success ${response.statusCode}");
+      return allAlarmGroupFromJson(json);
+    }else{
+      print("Error ${response.statusCode}");
+    }
+    return null;
+
+  }
+
+  /*
+    Future<List<AllSite>?> getAllSite() async {
+    var client = http.Client();
+
+    var uri = Uri.parse('http://13.126.15.56:180/api/Site/GetAllSite?userId=152');
+    var response = await client.get(uri);
+    if (response.statusCode == 200){
+      var json = response.body;
+      return allSiteFromJson(json);
+    }else {
+      print('failed');
+      log('failed');
+    }
+    return null;
+  }
+   */
 
   Future<String?> updateAlarmState(int alarmId) async{
     this.alarmId = alarmId;

@@ -2,7 +2,6 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_bold_grey.dart';
 import 'package:notifier_app/components/text_grey.dart';
-import 'package:notifier_app/components/traffic_indicator.dart';
 import 'package:notifier_app/services/alarm_service.dart';
 import 'package:video_player/video_player.dart';
 
@@ -150,15 +149,8 @@ class _AlarmComponentState extends State<AlarmComponent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: TextBoldGrey(boldText: widget.alarmTitle!),
-              ),
-              //Row(
-              //  children: [
-              //    TrafficIndicator(indicatorColor: Colors.red),
-              //    const SizedBox(width: 5),
-              //    TextBoldGrey(boldText: 'High'),
-              //  ],
-              //),
+                child: TextBoldGrey(boldText: "${widget.alarmTitle!}|${widget.alarmId}"),
+              )
             ],
           ),
           Row(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_grey.dart';
 
 import '../../components/custom_app_bar.dart';
-import '../../components/nav_bar.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});

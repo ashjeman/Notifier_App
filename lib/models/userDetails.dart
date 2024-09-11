@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:notifier_app/controller.dart';
-
 UserDetails userDetailsFromJson(String str) => UserDetails.fromJson(json.decode(str));
 
 String userDetailsToJson(UserDetails data) => json.encode(data.toJson());

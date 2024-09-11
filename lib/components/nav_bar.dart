@@ -37,7 +37,6 @@ class _NavBarState extends State<NavBar> {
                             Navigator.pushNamed(context, '/dashboardpage');
                             widget.currentPageIndex = 1;
                             break;
-                    break;
                     case 2: Navigator.popUntil(context, ModalRoute.withName('/homepage'));
                             Navigator.pushNamed(context, '/alarmlistpage');
                             widget.currentPageIndex = 2;

@@ -7,7 +7,6 @@ import '../../components/assets_components/asset_locations_component.dart';
 import '../../components/background_container.dart';
 import '../../components/custom_app_bar.dart';
 import '../../components/header.dart';
-import '../../components/nav_bar.dart';
 import '../../components/search_field.dart';
 import '../../models/allSite.dart';
 

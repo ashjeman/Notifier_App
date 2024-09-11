@@ -5,14 +5,16 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/alarm_components/manual_alarm_field.dart';
 import 'package:notifier_app/components/save_button.dart';
+import 'package:notifier_app/models/allAlarmGroup.dart';
+import 'package:notifier_app/services/alarm_service.dart';
 import 'package:notifier_app/services/asset_location_service.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:notifier_app/services/manual_alarm_service.dart';
 
 import '../../components/custom_app_bar.dart';
+import '../../models/AllAlarm.dart';
 import '../../models/allSite.dart';
 import '../../controller.dart';
-import '../../models/allAlarm.dart';
 
 class ManualAlarmPage extends StatefulWidget {
   const ManualAlarmPage({super.key});
@@ -24,24 +26,25 @@ class ManualAlarmPage extends StatefulWidget {
 class _ManualAlarmPageState extends State<ManualAlarmPage> {
   late Controller controller;
 
-  String alarmGroup = 'Alarm 1';
   DateTime alarmDate = DateTime.now();
   TimeOfDay alarmTime = TimeOfDay.now();
-  AlarmGroupName? selectedGroupName;
+  String? selectedGroupName;
   EscalationState? selectedEscalationState;
-  int selectedSite = 0;
+  int selectedSiteId = 0;
   List<AllSite>? allSites;
-  String directoryPath = '';
+  int selectedAlarmGroupId = 0;
+  List<AllAlarmGroup>? allAlarmGroup;
   bool mediaSelected = false;
   TextEditingController descriptionController = TextEditingController();
+  String filePath = '';
 
   @override
   void initState() {
     super.initState();
     controller = Get.put(Controller());
-    selectedGroupName = AlarmGroupName.values.first;
     selectedEscalationState = EscalationState.PENDING;
-    int selectedSite = controller.siteId.value;
+    selectedSiteId = controller.siteId.value;
+    selectedAlarmGroupId = 1001;
     getData().then((_) {
       setState(() {}); // Trigger UI update after data is fetched
     });
@@ -49,10 +52,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
 
   getData() async {
     allSites = await AssetLocationService().getAllSite();
-  }
-
-  String getAlarmGroup(AlarmGroupName alarmGroupName){
-    return alarmGroupName.toString().split('.').last;
+    allAlarmGroup = await AlarmService().getAlarmGroup();
   }
 
   String getEscalationState(EscalationState escalationState){
@@ -65,14 +65,8 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
 
     if (result != null) {
       PlatformFile file = result.files.first;
-
-      print(file.name);
-      print(file.bytes);
-      print(file.size);
-      print(file.extension);
-      print(file.path);
       setState(() {
-        directoryPath = file.path!;
+        filePath = file.path!;
         mediaSelected = true;
       });
     } else {
@@ -112,7 +106,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                             mediaSelected ?
                             SizedBox(
                               height: 200,
-                              child: Image.file(File(directoryPath), width: double.infinity, fit: BoxFit.cover),
+                              child: Image.file(File(filePath), width: double.infinity, fit: BoxFit.cover),
                             )
                             : Container(
                                 height: 200,
@@ -219,20 +213,21 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                  DropdownButton<AlarmGroupName>(
-                                  value: selectedGroupName,
-                                  items: AlarmGroupName.values.map((AlarmGroupName alarmGroupName) {
-                                    return DropdownMenuItem<AlarmGroupName>(
-                                      value: alarmGroupName,
-                                      child: Text(getAlarmGroup(alarmGroupName)),
-                                    );
-                                  }).toList(),
-                                  onChanged: (AlarmGroupName? value) {
-                                    setState(() {
-                                      selectedGroupName = value;
-                                    });
-                                  },
-                                  )],
+                                    DropdownButton( //taken from asset_location_page.dart
+                                        value: selectedAlarmGroupId,
+                                        items: allAlarmGroup?.map((e) {
+                                          return DropdownMenuItem(
+                                            value: e.id,
+                                            child: Text(e.alarmGroupName),
+                                          );
+                                        }).toList(),
+                                        onChanged: (v) {
+                                          setState(() {
+                                            selectedAlarmGroupId = v as int;
+                                          });
+                                        }
+                                    )
+                                  ],
                                 )
                             )
                           ],
@@ -270,18 +265,19 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     DropdownButton( //taken from asset_location_page.dart
-                                        value: selectedSite,
-                                        items: allSites?.map((e) {
-                                          return DropdownMenuItem(
-                                            value: e.id,
-                                            child: Text("${e.siteName}"),
-                                          );
-                                        }).toList(),
-                                        onChanged: (v) {
-                                          setState(() {
-                                            selectedSite = v as int;
-                                          });
-                                        }),
+                                      value: selectedSiteId,
+                                      items: allSites?.map((e) {
+                                        return DropdownMenuItem(
+                                          value: e.id,
+                                          child: Text("${e.siteName}"),
+                                        );
+                                      }).toList(),
+                                      onChanged: (v) {
+                                        setState(() {
+                                          selectedSiteId = v as int;
+                                        });
+                                      }
+                                    ),
                                   ],
                                 )
                             )
@@ -312,15 +308,18 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
+
                                 ManualAlarmService().createManualAlarm(
                                     controller.userId.value, //userID
                                     descriptionController.text, //message
-                                    selectedSite, //siteID
-                                    alarmGroupId, //alarmGroupID
-                                    escalationState, //escalationState
-                                    file //filePath
+                                    selectedSiteId, //siteID
+                                    selectedAlarmGroupId, //alarmGroupID
+                                    EscalationState.PENDING, //escalationState
+                                    filePath //filePath
                                 );
+
                                 //Navigator.pop(context);
+                                mediaSelected = false;
                               },
                               child: SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit'),
                             )

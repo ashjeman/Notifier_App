@@ -14,7 +14,7 @@ class AllAlarm {
   DateTime? submissionDateTime;
   int? siteId;
   int? alarmGroupId;
-  AlarmGroupName? alarmGroupName;
+  String? alarmGroupName;
   String? url;
   int? closedby;
   dynamic closedbyusername;
@@ -51,7 +51,7 @@ class AllAlarm {
     submissionDateTime: json["submission_date_time"] == null ? null : DateTime.parse(json["submission_date_time"]),
     siteId: json["site_id"],
     alarmGroupId: json["alarm_group_id"],
-    alarmGroupName: alarmGroupNameValues.map[json["alarm_group_name"]]!,
+    alarmGroupName: json["alarm_group_name"],
     url: json["url"],
     closedby: json["closedby"],
     closedbyusername: json["closedbyusername"],
@@ -70,7 +70,7 @@ class AllAlarm {
     "submission_date_time": submissionDateTime?.toIso8601String(),
     "site_id": siteId,
     "alarm_group_id": alarmGroupId,
-    "alarm_group_name": alarmGroupNameValues.reverse[alarmGroupName],
+    "alarm_group_name": alarmGroupName,
     "url": url,
     "closedby": closedby,
     "closedbyusername": closedbyusername,
@@ -79,16 +79,6 @@ class AllAlarm {
     "isRead": isRead,
   };
 }
-
-enum AlarmGroupName {
-  CCTV,
-  VIRTUAL_GUARD
-}
-
-final alarmGroupNameValues = EnumValues({
-  "CCTV": AlarmGroupName.CCTV,
-  "VIRTUAL GUARD": AlarmGroupName.VIRTUAL_GUARD
-});
 
 enum EscalationState {
   CLOSED,

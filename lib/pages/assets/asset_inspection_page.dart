@@ -4,7 +4,6 @@ import 'package:notifier_app/components/assets_components/asset_inspection_compo
 import '../../components/background_container.dart';
 import '../../components/custom_app_bar.dart';
 import '../../components/header.dart';
-import '../../components/nav_bar.dart';
 import '../../components/search_field.dart';
 
 class AssetInspectionPage extends StatefulWidget {
