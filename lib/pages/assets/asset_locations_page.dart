@@ -112,6 +112,7 @@ class _AssetLocationsPageState extends State<AssetLocationsPage> {
                         padding: const EdgeInsets.only(top: 0.0),
                         itemCount: foundLocations?.length,
                         itemBuilder: (context, index) {
+                          //components/assets_components/asset_locations_component.dart
                           return AssetLocationsComponent(
                               locationName: foundLocations![index].name,
                               noOfAssets: foundLocations![index].itemcount.toString(),

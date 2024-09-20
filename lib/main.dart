@@ -9,6 +9,7 @@ import 'package:notifier_app/pages/assets/asset_locations_page.dart';
 import 'package:notifier_app/pages/assets/asset_option_page.dart';
 import 'package:notifier_app/pages/chat/chat_history_page.dart';
 import 'package:notifier_app/pages/chat/chat_page.dart';
+import 'package:notifier_app/pages/chat/message_page.dart';
 import 'package:notifier_app/pages/dashboard_page.dart';
 import 'package:notifier_app/pages/edit_history_page.dart';
 import 'package:notifier_app/pages/home_page.dart';
@@ -57,7 +58,8 @@ class NotifierApp extends StatelessWidget {
         '/assetoptionpage': (context) => const AssetOptionPage(),
         '/scanneditemspage': (context) => const ScannedItemsPage(),
         '/messageoptionpage': (context) => const MessageOptionPage(),
-        '/alarmmedia': (context) => const AlarmMedia()
+        '/alarmmedia': (context) => const AlarmMedia(),
+        //'/messagepage': (context) => const MessagePage()
       },
     );
   }

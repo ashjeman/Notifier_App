@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   late Controller controller;
   String textFieldHint = 'Mobile Number';
 
+  //Initiate Getx controller at launch
   @override
   void initState() {
     super.initState();
@@ -33,17 +34,15 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController userInputController = TextEditingController();
   Timer? countdownTimer;
 
+  //Dispose textfield controller when not in use
   @override
   void dispose() {
     userInputController.dispose();
     super.dispose();
   }
 
-  void stopTimer(){
-    countdownTimer?.cancel();
-  }
-
-  void startCountdown() {
+  //Start timer
+  void startTimer() {
     countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (secondsLeft > 0) {
         setState(() {
@@ -55,15 +54,21 @@ class _LoginPageState extends State<LoginPage> {
           textFieldHint = 'Mobile Number';
         });
       }else {
-      timer.cancel();
-      setState(() {
-      otpError = true;
-      otpRequested = false;
-      });
+        timer.cancel();
+        setState(() {
+          otpError = true;
+          otpRequested = false;
+        });
       }
     });
   }
 
+  //Stop timer
+  void stopTimer(){
+    countdownTimer?.cancel();
+  }
+
+  //Send OTP code to user's phone, start countdown and clear textfield for next input (OTP code)
   void handleOtpRequest() {
     Future<UserDetails?> userDetails;
 
@@ -73,12 +78,13 @@ class _LoginPageState extends State<LoginPage> {
       secondsLeft = 60;
       textFieldHint = 'OTP Code';
     });
-    startCountdown();
+    startTimer();
     userDetails = UserAuth().sendOtp(userInputController.text);
     //print(userInputController.text);
     userInputController.clear();
   }
 
+  //Verify if code entered is the same as OTP code
   void handleOtpVerification() {
     if (userInputController.text == controller.authCode.value) {
       countdownTimer?.cancel();
@@ -119,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  //Change Button text either "Verify" or "Get OTP"
   Widget otpActionButton() {
     return otpRequested
         ? GestureDetector(
@@ -131,99 +138,102 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  //Page design
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/app-bg.png'),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/app-bg.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 100, right: 25, left: 35),
-                child: Image.asset('assets/images/notifier-logo.png'),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
-                child: Container(
-                  width: double.infinity,
-                  height: 400,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade200.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 40),
-                      const Text(
-                        'Welcome To Notifier App',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      const SizedBox(height: 15),
-                      const Text(
-                        'Enter Registration Number',
-                        style: TextStyle(
-                          color: Color(0xFFF3B413),
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+          child: Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 100, right: 25, left: 35),
+                  child: Image.asset('assets/images/notifier-logo.png'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
+                  child: Container(
+                    width: double.infinity,
+                    height: 400,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 40),
+                        const Text(
+                          'Welcome To Notifier App',
+                          style: TextStyle(color: Colors.white),
                         ),
-                      ),
-                      const SizedBox(height: 40),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10, left: 10),
-                        child: TextField(
-                          controller: userInputController,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                            prefixIcon: const Icon(Icons.phone_android),
-                            hintText: textFieldHint,
-                            filled: true,
-                            fillColor: Colors.white,
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(color: Colors.white),
+                        const SizedBox(height: 15),
+                        const Text(
+                          'Enter Registration Number',
+                          style: TextStyle(
+                            color: Color(0xFFF3B413),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10, left: 10),
+                          child: TextField(
+                            controller: userInputController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                              prefixIcon: const Icon(Icons.phone_android),
+                              hintText: textFieldHint,
+                              filled: true,
+                              fillColor: Colors.white,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: const BorderSide(color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      otpCountdownText(),
-                      const SizedBox(height: 10),
-                      otpErrorText(),
-                      const SizedBox(height: 20),
-                      otpActionButton(),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ElevatedButton(
-                              onPressed: (){
-                                controller.userId = 152.obs;
-                                controller.userName = 'arun@servosecurity.my'.obs;
-                                controller.emailAddress = 'arun@servosecurity.my'.obs;
-                                controller.mobileNo = '0129228390'.obs;
-                                Navigator.pushNamed(context, '/homepage');
-                              },
-                              child: const Text("Edmund's acc")
-                          ),
-                          const ElevatedButton(
-                              onPressed: null,
-                              child: Text("Stanley's acc")
-                          )
-                        ],
-                      )
-                    ],
+                        const SizedBox(height: 10),
+                        otpCountdownText(),
+                        const SizedBox(height: 10),
+                        otpErrorText(),
+                        const SizedBox(height: 20),
+                        otpActionButton(),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ElevatedButton(//For developer mode
+                                onPressed: (){
+                                  controller.userId = 152.obs;
+                                  controller.userName = 'arun@servosecurity.my'.obs;
+                                  controller.emailAddress = 'arun@servosecurity.my'.obs;
+                                  controller.mobileNo = '0129228390'.obs;
+                                  Navigator.pushNamed(context, '/homepage');
+                                },
+                                child: const Text("Edmund's acc")
+                            ),
+                            const ElevatedButton(
+                                onPressed: null,
+                                child: Text("Stanley's acc")
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

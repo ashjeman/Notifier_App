@@ -26,6 +26,7 @@ class ManualAlarmPage extends StatefulWidget {
 class _ManualAlarmPageState extends State<ManualAlarmPage> {
   late Controller controller;
 
+  //initiates variable
   DateTime alarmDate = DateTime.now();
   TimeOfDay alarmTime = TimeOfDay.now();
   String? selectedGroupName;
@@ -38,6 +39,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
   TextEditingController descriptionController = TextEditingController();
   String filePath = '';
 
+  //initiates Getx controller and get dropdown data
   @override
   void initState() {
     super.initState();
@@ -50,6 +52,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
     });
   }
 
+  //get sites and alarm group list for dropdowns
   getData() async {
     allSites = await AssetLocationService().getAllSite();
     allAlarmGroup = await AlarmService().getAlarmGroup();
@@ -259,7 +262,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                         ),
                         Row(
                           children: [
-                            //PopupMenuLabel(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Site'),
+                            PopupMenuLabel(fieldIconPath: 'assets/icons/alarm-ring-icon.png', fieldName: 'Site'),
                             Flexible(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -308,7 +311,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-
+                                //lib/services/manual_alarm_service.dart
                                 ManualAlarmService().createManualAlarm(
                                     controller.userId.value, //userID
                                     descriptionController.text, //message
@@ -317,8 +320,7 @@ class _ManualAlarmPageState extends State<ManualAlarmPage> {
                                     EscalationState.PENDING, //escalationState
                                     filePath //filePath
                                 );
-
-                                //Navigator.pop(context);
+                                Navigator.pop(context);
                                 mediaSelected = false;
                               },
                               child: SaveButton(buttonIcon: 'assets/icons/upload-icon.png', buttonText: 'Submit'),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/text_grey.dart';
+import 'package:notifier_app/services/message_service.dart';
 
 import '../../components/custom_app_bar.dart';
 
@@ -105,17 +106,23 @@ class _ChatPageState extends State<ChatPage> {
                               ),
                             )
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            width: 50,
-                            height: 50,
-                            padding: const EdgeInsets.all(13),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: const Color(0xFFC9D7EB)
+                          GestureDetector(
+                            onTap: (){
+                              //Navigator.pushNamed(context, '/messagepage');
+                              //MessageService().getMessages();
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 10),
+                              width: 50,
+                              height: 50,
+                              padding: const EdgeInsets.all(13),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: const Color(0xFFC9D7EB)
+                              ),
+                              child: Image.asset('assets/icons/send-icon.png'),
                             ),
-                            child: Image.asset('assets/icons/send-icon.png'),
-                          ),
+                          )
                         ],
                       ),
                     )

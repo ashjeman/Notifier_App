@@ -71,6 +71,7 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
     if (action == 'Edit') {
       _editLocation(context);
     } else if (action == 'Delete') {
+      //lib/services/asset_location_service.dart
       AssetLocationService().deleteAssetLocation(widget.locationId);
     }
   }
@@ -114,6 +115,8 @@ class _AssetLocationsComponentState extends State<AssetLocationsComponent> {
                   child: ElevatedButton(onPressed: (){
                     String editLocationName = controller.text;
                     if(editLocationName == ''){
+
+                      //lib/services/asset_location_service.dart
                       assetLocation = AssetLocationService().editAssetLocation(widget.locationId, widget.locationName);
                     }else{
                       assetLocation = AssetLocationService().editAssetLocation(widget.locationId, editLocationName);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notifier_app/components/background_container.dart';
 import 'package:notifier_app/components/header.dart';
-import 'package:notifier_app/components/options_component.dart';
+import 'package:notifier_app/components/assets_components/options_component.dart';
 import '../../components/custom_app_bar.dart';
 
 class AssetOptionPage extends StatelessWidget {

@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset : false,
       backgroundColor: Colors.grey.shade50,
-      bottomNavigationBar: NavBar(currentPageIndex: 0),
+      bottomNavigationBar: NavBar(currentPageIndex: 0), //lib/components/nav_bar.dart
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -91,22 +91,19 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const ContainerHeader(headerTitle: 'Categories'),
+                  //Development purpose only
                   Row(children: [Text("${controller.userName.value} | ${controller.userId.value} | ${controller.mobileNo.value}")],),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+                      //lib/components/categories.dart
                       Categories(
                         categoryIcon: 'assets/icons/manual-alarm-icon.png',
                         categoryName: 'Manual Alarm',
                         toPage: '/manualalarmpage',
-
                       ),
-                      /*Categories(
-                        categoryIcon: 'assets/icons/trending-icon.png',
-                        categoryName: 'Trending',
-                        toPage: '',
-                      ),*/
                       Categories(
                         categoryIcon: 'assets/icons/asset-icon.png',
                         categoryName: 'Asset',
@@ -128,6 +125,8 @@ class _HomePageState extends State<HomePage> {
                     bgChild: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
+                        //lib/components/header.dart
                         const ContainerHeader(
                             headerTitle: 'Recent Tasks'
                         ),
@@ -144,6 +143,8 @@ class _HomePageState extends State<HomePage> {
                           child: ListView(
                             padding: const EdgeInsets.only(top: 0.0),
                             children: [
+
+                              //lib/components/tasks_components/task_component.dart
                               TaskComponent(
                                   callback: () => Navigator.pushNamed(context, '/taskdetailspage'),
                                   imageIcon: 'assets/icons/task-check-icon.png',
@@ -198,46 +199,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  
-  /*Future _displaySettings(BuildContext context){
-    return showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
-      builder: (context) => Container(
-        padding: const EdgeInsets.all(15),
-        height: 180,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const ContainerHeader(headerTitle: 'Settings'),
-            const SizedBox(height: 10),
-            const Text(
-              'Select site',
-              style: TextStyle(
-                color: Color(0xFF070458),
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-              ),
-            ),
-            const SizedBox(height: 10),
-            DropdownButton<String>(
-              value: currentSite,
-              items: const [
-                DropdownMenuItem(
-                  value: 'Servo',
-                  child: Text('Servo'),
-                ),
-              ],
-              onChanged:  (String? newValue) {
-                setState(() {
-                  currentSite = newValue!;
-                });
-              }
-            ),
-          ],
-        ),
-      ),
-    );
-  }*/
 }
