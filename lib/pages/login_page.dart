@@ -143,100 +143,98 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/app-bg.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Center(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 100, right: 25, left: 35),
-                  child: Image.asset('assets/images/notifier-logo.png'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
-                  child: Container(
-                    width: double.infinity,
-                    height: 400,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 40),
-                        const Text(
-                          'Welcome To Notifier App',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        const SizedBox(height: 15),
-                        const Text(
-                          'Enter Registration Number',
-                          style: TextStyle(
-                            color: Color(0xFFF3B413),
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 40),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10, left: 10),
-                          child: TextField(
-                            controller: userInputController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                              prefixIcon: const Icon(Icons.phone_android),
-                              hintText: textFieldHint,
-                              filled: true,
-                              fillColor: Colors.white,
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                borderSide: const BorderSide(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        otpCountdownText(),
-                        const SizedBox(height: 10),
-                        otpErrorText(),
-                        const SizedBox(height: 20),
-                        otpActionButton(),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            ElevatedButton(//For developer mode
-                                onPressed: (){
-                                  controller.userId = 152.obs;
-                                  controller.userName = 'arun@servosecurity.my'.obs;
-                                  controller.emailAddress = 'arun@servosecurity.my'.obs;
-                                  controller.mobileNo = '0129228390'.obs;
-                                  Navigator.pushNamed(context, '/homepage');
-                                },
-                                child: const Text("Edmund's acc")
-                            ),
-                            const ElevatedButton(
-                                onPressed: null,
-                                child: Text("Stanley's acc")
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/app-bg.png'),
+            fit: BoxFit.cover,
           ),
         ),
-      ),
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 100, right: 25, left: 35),
+                child: Image.asset('assets/images/notifier-logo.png'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
+                child: Container(
+                  width: double.infinity,
+                  height: 400,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade200.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 40),
+                      const Text(
+                        'Welcome To Notifier App',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(height: 15),
+                      const Text(
+                        'Enter Registration Number',
+                        style: TextStyle(
+                          color: Color(0xFFF3B413),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10, left: 10),
+                        child: TextField(
+                          controller: userInputController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                            prefixIcon: const Icon(Icons.phone_android),
+                            hintText: textFieldHint,
+                            filled: true,
+                            fillColor: Colors.white,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      otpCountdownText(),
+                      const SizedBox(height: 10),
+                      otpErrorText(),
+                      const SizedBox(height: 20),
+                      otpActionButton(),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ElevatedButton(//For developer mode
+                              onPressed: (){
+                                controller.userId = 152.obs;
+                                controller.userName = 'arun@servosecurity.my'.obs;
+                                controller.emailAddress = 'arun@servosecurity.my'.obs;
+                                controller.mobileNo = '0129228390'.obs;
+                                Navigator.pushNamed(context, '/homepage');
+                              },
+                              child: const Text("Edmund's acc")
+                          ),
+                          const ElevatedButton(
+                              onPressed: null,
+                              child: Text("Stanley's acc")
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      )
     );
   }
 }

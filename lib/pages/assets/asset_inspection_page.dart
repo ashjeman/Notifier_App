@@ -62,6 +62,7 @@ class _AssetInspectionPageState extends State<AssetInspectionPage> {
                 const SizedBox(height: 10),
                 SearchField(controller: controller, onChanged: (String ) {  },),
                 const SizedBox(height: 10),
+
                 CupertinoSlidingSegmentedControl(
                   children: const {
                     0: Text('Open'),
@@ -77,6 +78,7 @@ class _AssetInspectionPageState extends State<AssetInspectionPage> {
                   backgroundColor: const Color(0xFFD9D9D9),
                   thumbColor: const Color(0xFFADA1F8),
                 ),
+
                 const SizedBox(height: 10),
                 AssetInspectionComponent(
                     assetEquipment: 'Fire Ext',
