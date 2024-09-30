@@ -1,0 +1,24 @@
+Notifier Issues
+
+Asset > Inspection
+- no assets listed. no data to play around
+
+Asset > Expired Assets
+- no assets listed. no data to play around
+
+Tasks
+- new feature. no information // check w/ arun
+
+Manual Alarm
+- no Severity Level & Category in Swagger
+- Site name. Layout issue due to whitespace in database
+
+Chat
+- Redundant with Alarm/Task
+
+
+
+NavBar isssue
+Site option
+
+MultipartFormDataContent()
